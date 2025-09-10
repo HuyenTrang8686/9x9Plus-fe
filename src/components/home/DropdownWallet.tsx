@@ -1,17 +1,14 @@
 'use client';
 import { deleteCookie } from '@/app/actions/cookie';
 import authRequests from '@/app/http/requests/auth';
-import { Button } from '@/components/ui/button';
-import { DialogHeader } from '@/components/ui/dialog';
+import DialogError from '@/components/DialogError';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import CopyIcon from '@/libs/shared/icons/Copy';
 import ExitIcon from '@/libs/shared/icons/Exit';
 import LoadingDots from '@/libs/shared/icons/LoadingDots';
 import UserIcon from '@/libs/shared/icons/User';
 import { formatAddress, handleClipboardCopy, NumberFormat } from '@/libs/utils';
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
 import { useQueryClient } from '@tanstack/react-query';
-import { Loader2, TriangleAlert } from 'lucide-react';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -40,7 +37,7 @@ let httpContractInstance: any = null;
 const DropdownWallet = ({ address }: Props) => {
   const [balance, setBalance] = useState<string | undefined>(undefined);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [isWarningEth, setWarningEth] = useState<boolean>(false);
+  const [isWarningNetwork, setIsWarningNetWork] = useState<boolean>(false);
   const router = useRouter();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isMountedRef = useRef(true);
@@ -64,7 +61,7 @@ const DropdownWallet = ({ address }: Props) => {
         return true;
       } catch (err) {
         console.error('Network check error:', err);
-        setWarningEth(true);
+        setIsWarningNetWork(true);
         return false;
       }
     }
@@ -194,21 +191,13 @@ const DropdownWallet = ({ address }: Props) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      <Dialog open={isWarningEth}>
-        <DialogContent className="fixed top-1/2 left-1/2 -translate-1/2 confirm-dialog gap-3 max-w-[512px] h-[331px] w-full flex flex-col justify-center">
-          <DialogHeader className="flex flex-col items-center">
-            <DialogTitle className="text-shadow-custom font-semibold text-2xl">Đổi mạng sang BNB</DialogTitle>
-            <TriangleAlert className="size-[100px] text-shadow-custom" />
-            <DialogDescription className="text-shadow-custom">
-              Vui lòng kết nối mạng BNB để sử dụng app
-            </DialogDescription>
-          </DialogHeader>
-          <Button className="w-1/2 button-custom" onClick={() => handleLogout()}>
-            {isLoggingOut ? <Loader2 className="animate-spin" /> : 'OK'}
-          </Button>
-        </DialogContent>
-      </Dialog>
+      <DialogError
+        title="Đổi mạng sang BNB"
+        des="Vui lòng kết nối mạng BNB để sử dụng app"
+        isOpen={isWarningNetwork}
+        onClick={handleLogout}
+        isLoading={isLoggingOut}
+      />
     </div>
   );
 };

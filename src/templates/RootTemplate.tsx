@@ -1,7 +1,7 @@
 import React from 'react';
 
 const
-  RootTemplate = async (props: {
+  RootTemplate = (props: {
     children: React.ReactNode;
   }) => {
     return (

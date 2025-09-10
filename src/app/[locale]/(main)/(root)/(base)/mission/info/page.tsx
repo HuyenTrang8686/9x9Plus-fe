@@ -49,6 +49,10 @@ const DataInfo = {
       {
         subTitle: '10. Nền tảng có nguy cơ "sập" không?',
         description: '→ Không. Đây là hành trình cá nhân hoá, không phụ thuộc dòng tiền, không có cơ chế "vỡ quỹ".'
+      },
+      {
+        subTitle: '11. Nghĩa vụ pháp lý của tôi khi tham gia?',
+        description: '→ Người chơi tham gia phải tuân thủ pháp luật địa phương và chịu trách nhiệm về mọi nghĩa vụ của mình.'
       }
     ]
   },

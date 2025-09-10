@@ -17,7 +17,7 @@ type Mission = {
   title: string;
   describe: string | ReactNode; // can be plain text or JSX
   score: string;
-  type?: 'shareLink' | 'joinGroup' | 'readTerms';
+  type?: 'shareLink' | 'joinGroup' | 'readTerms' | 'numerologyPolicy';
   to?: string;
   isCompleted: boolean;
 };
@@ -79,6 +79,24 @@ const Page = () => {
       isCompleted: dataMission?.joinGroup === true
     },
     {
+      title: 'Tìm hiểu về thần số học',
+      describe: (
+        <p>
+          Đọc về thần số học
+          {' '}
+          <strong>
+            9x9Plus
+          </strong>
+          {' '}
+          để hiểu rõ hơn về bản thân
+        </p>
+      ),
+      type: 'numerologyPolicy',
+      score: '',
+      to: '/mission/numerology-policy',
+      isCompleted: false
+    },
+    {
       title: 'Tìm hiểu về 9x9Plus',
       describe: (
         <p>
@@ -92,23 +110,26 @@ const Page = () => {
         </p>
       ),
       type: 'readTerms',
-      score: '+999',
+      score: '',
       to: '/mission/info',
-      isCompleted: dataMission?.readTerms === true
+      isCompleted: false
     },
   ];
   const queryClient = useQueryClient();
   const router = useRouter();
   const { mutateAsync } = useUpdateMission();
   const handleMission = async ({ type, to, isCompleted }: {
-    type: 'shareLink' | 'joinGroup' | 'readTerms';
+    type: 'shareLink' | 'joinGroup' | 'readTerms' | 'numerologyPolicy';
     to?: string;
     isCompleted: boolean;
   }) => {
     if (!type) {
       return;
     }
-
+    if ((type === 'readTerms' || type === 'numerologyPolicy') && to) {
+      router.push(to);
+      return;
+    }
     // Perform the mutation first
     await mutateAsync(type);
     queryClient.removeQueries({ queryKey: ['get-me'] });
@@ -149,10 +170,6 @@ const Page = () => {
         'Chúc mừng bạn đã nhận được phần thưởng từ nhiệm vụ này!',
         { duration: 3000 }
       );
-    }
-
-    if (type === 'readTerms' && to) {
-      router.push(to);
     }
   };
   useEffect(() => {
@@ -205,13 +222,15 @@ const Page = () => {
               <p className="text-shadow-custom font-medium drop-shadow-sm">
                 {item.score}
               </p>
-              <Image
-                src="/assets/badge-medal.png"
-                alt="Badge Medal"
-                width={24}
-                height={24}
-                className="inline-block"
-              />
+              {item.type !== 'numerologyPolicy' && item.type !== 'readTerms' && (
+                <Image
+                  src="/assets/badge-medal.png"
+                  alt="Badge Medal"
+                  width={24}
+                  height={24}
+                  className="inline-block"
+                />
+              )}
             </div>
             {item.type && (
               <div>

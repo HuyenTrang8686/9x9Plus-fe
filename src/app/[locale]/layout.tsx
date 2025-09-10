@@ -73,7 +73,6 @@ export default async function RootLayout(props: {
   }
 
   setRequestLocale(locale);
-
   return (
     <html lang={locale} className={sfPro.variable}>
       <body className="min-h-screen">
