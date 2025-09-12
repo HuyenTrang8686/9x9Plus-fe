@@ -21,8 +21,8 @@ const StarChart = ({ numerologyResult }: Props) => {
       </button>
 
       {/* Life Path */}
-      <button type="button" className="flex flex-col items-center right-[49px] absolute top-10">
-        <p className="text-shadow-custom text-medium-custom text-medium-custom-2">ĐƯỜNG ĐỜI</p>
+      <button type="button" className="flex flex-col items-center right-[35px] absolute top-10">
+        <p className="text-shadow-custom text-medium-custom text-medium-custom-2">NĂM CÁ NHÂN</p>
         <p className="text-shadow-custom font-[590] text-[2.5rem] bg-number size-16">
           {numerologyResult?.lifePath}
         </p>
@@ -38,7 +38,7 @@ const StarChart = ({ numerologyResult }: Props) => {
       </button>
 
       {/* Soul */}
-      <button type="button"className="flex flex-col items-center left-34 absolute bottom-0">
+      <button type="button"className="flex flex-col items-center left-30 absolute bottom-0">
         <p className="text-shadow-custom font-[590] text-[2.5rem] bg-number size-16">
           {numerologyResult?.soul}
         </p>

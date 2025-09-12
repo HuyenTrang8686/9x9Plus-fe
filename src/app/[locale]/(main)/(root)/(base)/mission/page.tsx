@@ -130,10 +130,12 @@ const Page = () => {
       router.push(to);
       return;
     }
-    // Perform the mutation first
-    await mutateAsync(type);
-    queryClient.removeQueries({ queryKey: ['get-me'] });
-    handleRevalidateTag('get-me');
+    // Perform the mutation first (only for types that support it)
+    if (type === 'shareLink' || type === 'joinGroup') {
+      await mutateAsync(type);
+      queryClient.removeQueries({ queryKey: ['get-me'] });
+      handleRevalidateTag('get-me');
+    }
 
     if ((type === 'shareLink' || type === 'joinGroup') && to) {
       // For Telegram links, use deep linking

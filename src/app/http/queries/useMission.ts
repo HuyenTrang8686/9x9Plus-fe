@@ -11,9 +11,7 @@ export const useGetMission = () => {
 
 export const useUpdateMission = () => {
   return useMutation({
-
-    mutationFn: async (query: 'shareLink' | 'joinGroup' | 'readTerms') =>
+    mutationFn: async (query: 'shareLink' | 'joinGroup') =>
       missionRequest.updateTasks(query),
-
   });
 };
