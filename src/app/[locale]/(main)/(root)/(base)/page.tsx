@@ -16,7 +16,7 @@ const page = () => {
       <h2 className="text-shadow-custom text-[14px] font-[510] text-center">
         Chặng Đường 9 Tầng Thăng Cấp - Bạn Đã Mở
         <br />
-        Box Chưa ?
+        Box Chưa ? 
       </h2>
       <Suspense fallback={<Loading />}>
         <BoxTable />

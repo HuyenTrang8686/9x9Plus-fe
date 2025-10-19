@@ -25,7 +25,7 @@ const BoxDetailController = () => {
       <button type="button" className="box-card-detail w-full flex items-center relative cursor-pointer" onClick={() => handleClipboardCopy(`${urlSharing}?invitedBy=${address}`)}>
         <ConnectionIcon className="translate-y-[2px] w-10" />
         <p className="text-shadow-custom text-[1rem] font-[590]">
-          Chia sẻ link
+          Lan tỏa hành trình
         </p>
         <CopyIcon2 className="absolute right-0 top-0 size-14" />
       </button>
@@ -36,7 +36,7 @@ const BoxDetailController = () => {
       >
         <ChartIcon className="translate-y-[2px] w-10" />
         <p className="text-shadow-custom text-[1rem] font-[590]">
-          Sơ đồ hệ thống
+          Bản đồ lan tỏa giá trị
         </p>
         <RightArrowIcon className="absolute right-0 top-0 size-14" />
       </button>

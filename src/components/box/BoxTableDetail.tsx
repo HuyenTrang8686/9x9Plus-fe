@@ -48,13 +48,13 @@ export default function BoxTableDetail({ totalUser, levelUsers }: Props) {
   return (
     <div className="p-4 w-full box-table text-white">
       <h2 className="text-center text-shadow-custom text-[1.25rem] font-[700] mb-4">
-        Thống kê số lượng
+        Nhật ký hành trình
       </h2>
       <Table className="text-white">
         <TableHeader>
           <TableRow>
             <TableHead className="text-shadow-custom font-[700] text-[1rem] text-center">Mở khóa</TableHead>
-            <TableHead className="text-shadow-custom font-[700] text-[1rem] text-center">Thống kê</TableHead>
+            <TableHead className="text-shadow-custom font-[700] text-[1rem] text-center">Thành viên</TableHead>
             <TableHead className="text-shadow-custom font-[700] text-[1rem] text-center">Kết nối lan tỏa</TableHead>
           </TableRow>
         </TableHeader>
