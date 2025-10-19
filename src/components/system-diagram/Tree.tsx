@@ -598,7 +598,7 @@ export default function Tree() {
           {!isSearching && (
             <>
               <h2 className="text-shadow-custom text-[1rem] font-[274]">Hành trình kết nối</h2>
-              <h1 className="text-shadow-custom text-[1.25rem] font-[700]">Sơ đồ hệ thống</h1>
+              <h1 className="text-shadow-custom text-[1.25rem] font-[700]">Bản đồ lan tỏa hành trình</h1>
             </>
           )}
           <div className={`absolute right-3 ${isSearching ? 'w-4/5' : 'w-0'} transition-all duration-300 -translate-y-1`}>

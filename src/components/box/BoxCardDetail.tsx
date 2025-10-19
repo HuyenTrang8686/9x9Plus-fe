@@ -19,7 +19,7 @@ type Props = {
 
 const BoxCardDetail = ({ boxSlug, dataBoxDetail }: Props) => {
   const data = [
-    { icon: <UserHeart />, label: 'Tổng kết nối hệ thống:', value: `${dataBoxDetail.totalUserSystem}` },
+    { icon: <UserHeart />, label: 'Tổng kết nối hành trình:', value: `${dataBoxDetail.totalUserSystem}` },
     { icon: <HeartUnlockIcon />, label: 'Hành trình mở khóa:', value: `${dataBoxDetail.boxNumber}/9` },
   ];
 
