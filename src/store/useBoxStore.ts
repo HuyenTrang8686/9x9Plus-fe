@@ -8,6 +8,14 @@ import Web3 from 'web3';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
+type BoxMessages = {
+  installWallet: string;
+  connectWallet: string;
+  transactionFailed: string;
+  openBoxSuccess: string;
+  transactionCanceled: string;
+};
+
 type StoreState = {
   // State
   loadingItems: {
@@ -22,7 +30,8 @@ type StoreState = {
   setIsTriggerLoading: (isLoading: boolean) => void;
   handleOpenBox: (
     currentBox: number,
-    sender: string
+    sender: string,
+    messages: BoxMessages
   ) => Promise<boolean | undefined>;
   setIsOpen: (isOpen: boolean) => void;
 };
@@ -61,14 +70,14 @@ const useBoxStore = create<StoreState>()(
         set({ isTriggerLoading: isLoading });
       },
 
-      handleOpenBox: async (currentBox: number, sender: string) => {
+      handleOpenBox: async (currentBox: number, sender: string, messages: BoxMessages) => {
         const state = get();
         state.setLoading(true, currentBox as number);
 
         const web3 = new Web3(window.ethereum);
 
         if (typeof window.ethereum === 'undefined') {
-          toast.error('Vui lòng cài đặt ví');
+          toast.error(messages.installWallet);
           return false;
         }
 
@@ -81,7 +90,7 @@ const useBoxStore = create<StoreState>()(
           const usdtContract = new web3.eth.Contract(usdtAbi as any, usdtAddress);
 
           if (!sender || !contractAddress) {
-            toast.error('Vui lòng kết nối ví');
+            toast.error(messages.connectWallet);
             return;
           }
 
@@ -91,7 +100,7 @@ const useBoxStore = create<StoreState>()(
 
             const transactionHash = hax?.transactionHash;
             if (!transactionHash) {
-              toast.error('Giao dịch thất bại vui lòng liên hệ admin.');
+              toast.error(messages.transactionFailed);
               return false;
             }
 
@@ -148,10 +157,10 @@ const useBoxStore = create<StoreState>()(
               set({
                 isOpen: true
               });
-              toast.success('Mở box thành công!');
+              toast.success(messages.openBoxSuccess);
               handleRevalidateTag('get-me');
             } else {
-              toast.error('Giao dịch thất bại hoặc bị huỷ.');
+              toast.error(messages.transactionCanceled);
               return false;
             }
             return true;

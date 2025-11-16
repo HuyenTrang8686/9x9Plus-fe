@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTimeInterval from '@/hooks/useTimeInterval';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useRef, useState } from 'react';
@@ -15,6 +16,7 @@ type Props = {
 };
 
 const OTPForm = ({ email }: Props) => {
+  const t = useTranslations('kyc');
   const [otp, setOtp] = useState<string[]>(Array.from({ length: 6 }).fill('') as string[]);
   const router = useRouter();
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -66,21 +68,21 @@ const OTPForm = ({ email }: Props) => {
 
       // Show success message if we got exactly 6 digits
       if (digits.length === 6) {
-        toast.success('Mã OTP đã được dán thành công!');
+        toast.success(t('otpPastedSuccess'));
       }
     }
   };
 
   const handleResend = () => {
     userRequest.resendOtp();
-    toast.success('Mã OTP đã được gửi lại. Vui lòng kiểm tra email của bạn.');
+    toast.success(t('otpResent'));
     handleTimeInterval(60, true);
   };
 
   const handleSubmit = async () => {
     const countFormated = otp.join('');
     if (otp.includes('')) {
-      toast.warning('Vui lòng nhập đầy đủ mã OTP.');
+      toast.warning(t('otpRequired'));
       return;
     }
 
@@ -104,7 +106,7 @@ const OTPForm = ({ email }: Props) => {
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
-        toast.error('Xác nhận không thành công. Vui lòng thử lại sau.');
+        toast.error(t('otpVerifyFailed'));
       }
       setIsLoading(false);
     } finally {
@@ -118,7 +120,7 @@ const OTPForm = ({ email }: Props) => {
         className="text-[0.875rem] text-center font-[274] text-[#FAFAFA] mt-4"
         style={{ textShadow: '0px 4px 15px rgba(145, 213, 255, 0.50)' }}
       >
-        Mã xác nhận đã được gửi đến email
+        {t('otpSent')}
       </p>
       <p className="text-[#BAE7FF] text-[0.875rem] font-[590] text-center">
         {decodeURIComponent(email ?? '')}
@@ -138,13 +140,13 @@ const OTPForm = ({ email }: Props) => {
             onChange={e => handleInputChange(index, e.target.value)}
             onKeyDown={e => handleKeyDown(index, e)}
             onPaste={handlePaste}
-            className="w-[3.1563rem] h-[4rem] text-center text-2xl font-bold bg-white text-black rounded-2xl"
+            className="w-[3.1563rem] h-16 text-center text-2xl font-bold bg-white text-black rounded-2xl"
           />
         ))}
 
       </div>
       <div className="space-x-1">
-        <span className="text-[#FFF] text-[0.875rem] font-[274]" style={{ textShadow: '0px 4px 15px rgba(145, 213, 255, 0.50)' }}>Chưa có mã xác nhận?</span>
+        <span className="text-[#FFF] text-[0.875rem] font-[274]" style={{ textShadow: '0px 4px 15px rgba(145, 213, 255, 0.50)' }}>{t('noOtpYet')}</span>
         {isCounting ? (
           <span className="text-[0.875rem] text-[#BAE7FF] font-[590]">
             {timeLeft}
@@ -156,7 +158,7 @@ const OTPForm = ({ email }: Props) => {
             className="text-[0.875rem] text-[#BAE7FF] font-[590] underline decoration-solid decoration-skip-ink-0 cursor-pointer bg-transparent border-none p-0"
             onClick={handleResend}
           >
-            Gửi lại
+            {t('resend')}
           </button>
         )}
       </div>
@@ -165,7 +167,7 @@ const OTPForm = ({ email }: Props) => {
           {' '}
           { isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {' '}
-          Xác nhận
+          {t('submit')}
         </Button>
       </div>
     </div>

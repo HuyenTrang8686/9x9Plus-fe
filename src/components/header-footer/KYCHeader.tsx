@@ -3,14 +3,16 @@
 import { roboto } from '@/app/fonts/roboto';
 import { sfPro } from '@/app/fonts/sfPro';
 import LeftArrowIcon from '@/libs/shared/icons/LeftArrow';
+import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 
 const KYCHeader = () => {
+  const t = useTranslations('kyc');
   const pathName = usePathname();
   const router = useRouter();
 
   return (
-    <div id="kyc-header" className="pt-4 items-center relative min-h-[80px] transition-opacity duration-300">
+    <div id="kyc-header" className="pt-4 items-center relative min-h-20 transition-opacity duration-300">
       {pathName === '/verify-email' && (
         <div className="absolute left-4 cursor-pointer">
           <LeftArrowIcon onClick={() => router.back()} />
@@ -26,7 +28,7 @@ const KYCHeader = () => {
         <p
           className={`${sfPro.variable} text-[0.875rem] text-[#D0D5DD] font-[274]`}
         >
-          Xác minh thông tin cá nhân
+          {t('title')}
         </p>
       </div>
     </div>

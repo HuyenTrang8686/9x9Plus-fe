@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+'use client';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -133,6 +135,7 @@ type Props = {
 };
 
 const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
+  const t = useTranslations('goldMining');
   const [isUnboxed, setisUnboxed] = useState<boolean>(false);
 
   const handleUnbox = (e: React.MouseEvent) => {
@@ -142,7 +145,16 @@ const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
 
   const renderRandomBlindBox = () => {
     const blindBox = blindBoxList.find(box => box.id === secretNumber);
-    return blindBox ? (
+    if (!blindBox) {
+      return (
+        <div className="text-center text-white">
+          <h1>{t('notFound')}</h1>
+          <p>{t('tryAgain')}</p>
+        </div>
+      );
+    }
+
+    return (
       <div
         onClick={handleUnbox}
         className="relative flex flex-col items-center justify-center cursor-pointer h-full"
@@ -150,12 +162,10 @@ const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
         {/* Background Image */}
         <div className="absolute z-20 flex flex-col items-center justify-center text-center space-y-4 top-50">
           <h1 className="text-shadow-custom text-[2rem] font-[860] text-white">
-            Hộp số
-            {' '}
-            {blindBox.id}
+            {t('boxNumber', { number: blindBox.id })}
           </h1>
           <h2 className="text-shadow-custom text-[1.25rem] font-[510] text-white">
-            {blindBox.title}
+            {t(`blindBoxes.box${secretNumber}.title`)}
           </h2>
         </div>
         <Image
@@ -169,19 +179,18 @@ const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
         {/* Content overlay */}
 
         <p className="text-shadow-custom font-[510] text-[1rem] text-white absolute bottom-40 z-50">
-          Lưu ý: Ấn vào hộp để mở quà của bạn
+          {t('clickToOpen')}
         </p>
-      </div>
-    ) : (
-      <div className="text-center text-white">
-        <h1>Không tìm thấy hộp bí mật</h1>
-        <p>Hãy thử lại với một số khác.</p>
       </div>
     );
   };
 
   const renderUnboxedContent = () => {
     const blindBox = blindBoxList.find(box => box.id === secretNumber);
+    if (!blindBox) {
+      return null;
+    }
+
     return (
       <div
         onClick={() => setDisplayRandomBlindBox({ isDisplay: false, secretNumber: 0 })}
@@ -199,7 +208,7 @@ const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
         {/* Content overlay */}
         <div className="relative z-20 flex flex-col items-center justify-center text-center space-y-4 px-2 -translate-y-20">
           <h1 className="text-shadow-custom font-[860] text-[2rem] text-white">
-            MỞ THÀNH CÔNG
+            {t('openedSuccessfully')}
           </h1>
           <Image
             width={500}
@@ -208,7 +217,14 @@ const RandomBlindBox = ({ secretNumber, setDisplayRandomBlindBox }: Props) => {
             alt="logo 9x9"
             src="/assets/logo-9x9.png"
           />
-          {blindBox && blindBox.content}
+          <div className="relative z-50 text-shadow-custom font-[400] text-[1.25rem] space-y-3">
+            <p className="relative z-50 text-white">
+              {t(`blindBoxes.box${secretNumber}.quote`)}
+            </p>
+            <p className="relative z-50 text-white">
+              {t(`blindBoxes.box${secretNumber}.action`)}
+            </p>
+          </div>
         </div>
       </div>
     );

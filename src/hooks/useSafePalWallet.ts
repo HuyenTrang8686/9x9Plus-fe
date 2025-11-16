@@ -2,6 +2,7 @@
 import { createCookie } from '@/app/actions/cookie';
 import authRequests from '@/app/http/requests/auth';
 import connectWalletRequest from '@/app/http/requests/connectWallet';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useState } from 'react';
@@ -10,6 +11,7 @@ import { toast } from 'sonner';
 
 const useSafePalWallet = () => {
   const router = useRouter();
+  const t = useTranslations('auth');
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [addressWallet, setAddressWallet] = useState<string>('');
   const getSafePalProvider = () => {
@@ -52,7 +54,7 @@ const useSafePalWallet = () => {
                   value: JSON.stringify(authData.user),
                 })
               ]);
-              toast.success('Kết nối ví thành công!', {
+              toast.success(t('connectWalletSuccess'), {
                 duration: 1000,
                 onAutoClose: () => {
                   authData.user.isKyc ? router.replace('/welcome') : router.replace('/policy-terms');
@@ -68,7 +70,7 @@ const useSafePalWallet = () => {
           return;
         }
         setIsConnecting(false);
-        toast.error('Kết nối ví thất bại, vui lòng thử lại sau!');
+        toast.error(t('connectWalletFailed'));
       } finally {
         setIsConnecting(false);
       }

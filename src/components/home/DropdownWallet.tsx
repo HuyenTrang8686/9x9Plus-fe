@@ -9,6 +9,7 @@ import LoadingDots from '@/libs/shared/icons/LoadingDots';
 import UserIcon from '@/libs/shared/icons/User';
 import { formatAddress, handleClipboardCopy, NumberFormat } from '@/libs/utils';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -35,6 +36,7 @@ let httpWeb3Instance: Web3 | null = null;
 let httpContractInstance: any = null;
 
 const DropdownWallet = ({ address }: Props) => {
+  const t = useTranslations('wallet');
   const [balance, setBalance] = useState<string | undefined>(undefined);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isWarningNetwork, setIsWarningNetWork] = useState<boolean>(false);
@@ -186,14 +188,14 @@ const DropdownWallet = ({ address }: Props) => {
             {' '}
           </DropdownMenuItem>
           <DropdownMenuItem className="w-full" onClick={handleLogout}>
-            <ExitIcon className=" absolute left-1 -top-[1px]" />
+            <ExitIcon className=" absolute left-1 -top-px" />
             <span className="w-full text-right -translate-x-1">Disconnect</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <DialogError
-        title="Đổi mạng sang BNB"
-        des="Vui lòng kết nối mạng BNB để sử dụng app"
+        title={t('switchToBNB')}
+        des={t('connectBNBNetwork')}
         isOpen={isWarningNetwork}
         onClick={handleLogout}
         isLoading={isLoggingOut}

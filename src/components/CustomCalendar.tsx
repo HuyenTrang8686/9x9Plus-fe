@@ -4,6 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ChevronDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface CustomCalendarProps {
@@ -14,6 +15,7 @@ interface CustomCalendarProps {
 }
 
 export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: CustomCalendarProps) {
+  const t = useTranslations('common');
   const [currentMonth, setCurrentMonth] = useState(selected?.getMonth() || new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(selected?.getFullYear() || new Date().getFullYear());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(selected);
@@ -173,14 +175,14 @@ export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: Cust
           onClick={onCancel}
           className="px-6 py-2 border border-gray-300  bg-white rounded-lg text-gray-700 hover:bg-gray-50"
         >
-          Hủy bỏ
+          {t('cancel')}
         </Button>
         <Button
           onClick={handleConfirm}
           disabled={!selectedDate}
           className="px-6 py-2 button-calendar text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
         >
-          Xác nhận
+          {t('confirm')}
         </Button>
       </div>
     </div>

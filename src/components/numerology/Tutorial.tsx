@@ -2,12 +2,14 @@
 import { Button } from '@/components/ui/button';
 import HandTouch from '@/libs/shared/icons/HandTouch';
 import { isClient } from '@/libs/utils';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const TUTORIAL_STORAGE_KEY = 'isDisplayTutorial';
 
 const Tutorial = () => {
+  const t = useTranslations('numerology');
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,8 +30,8 @@ const Tutorial = () => {
 
   return (
     <div className={`${!isVisible ? 'opacity-0 hidden' : 'opacity-100'} absolute inset-0 z-50 flex h-full flex-col items-center overflow-y-auto bg-[#222B3C]/90 py-2`}>
-      <p className="text-shadow-custom text-[1.0625rem] font-[400]">
-        Nhấn vào các hình tròn có icon
+      <p className="text-shadow-custom text-[1.0625rem] font-normal">
+        {t('tutorialLine1')}
       </p>
 
       <Image
@@ -40,8 +42,8 @@ const Tutorial = () => {
         alt="Five meaning icons"
       />
 
-      <p className="text-shadow-custom text-[1.0625rem] font-[400]">
-        để xem chi tiết các chỉ số thần số học
+      <p className="text-shadow-custom text-[1.0625rem] font-normal">
+        {t('tutorialLine2')}
       </p>
 
       <div className="relative flex flex-col items-center">

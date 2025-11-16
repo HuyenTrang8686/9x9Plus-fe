@@ -11,6 +11,7 @@ const BoxTable = async () => {
   }
   return (
     <>
+
       <div className="grid grid-cols-3 gap-3 w-full px-6 mt-6 pb-20 max-">
         {
           userData.openBoxHistories.map((item, index) => (
