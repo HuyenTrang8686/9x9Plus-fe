@@ -28,7 +28,13 @@ export default antfu(
     // Ignored paths
     ignores: [
       'migrations/**/*',
+      '.pnpm-store/**',
+      '**/.pnpm-store/**',
+      'node_modules/**',
+      '.pnpm/**',
+      '**/.pnpm/**',
     ],
+
   },
   // --- Next.js Specific Rules ---
   {
