@@ -49,7 +49,7 @@ const ProfileForm = () => {
   });
   const router = useRouter();
 
-  const handleGenderSelect = async (gender: 'Nam' | 'Nữ' | 'Khác') => {
+  const handleGenderSelect = async (gender: 'male' | 'female' | 'other') => {
     setValue('gender', gender);
     setShowGenderSheet(false);
     // Trigger validation after setting value
@@ -143,7 +143,7 @@ const ProfileForm = () => {
                       className="input-numberology w-full flex justify-between"
                     >
                       <span className={field.value ? 'text-gray-800' : 'text-gray-500'}>
-                        {field.value || t('selectGender')}
+                        {field.value ? t(field.value) : t('selectGender')}
                       </span>
                       <ChevronDown className="w-5 h-5 text-gray-600" />
                     </Button>
@@ -155,9 +155,9 @@ const ProfileForm = () => {
                     </SheetHeader>
                     <div>
                       {([
-                        { value: 'Nam', label: t('male') },
-                        { value: 'Nữ', label: t('female') },
-                        { value: 'Khác', label: t('other') }
+                        { value: 'male', label: t('male') },
+                        { value: 'female', label: t('female') },
+                        { value: 'other', label: t('other') }
                       ] as const).map(gender => (
                         <button
                           key={gender.value}

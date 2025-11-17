@@ -5,7 +5,7 @@ export const profileSchema = z.object({
   birthDate: z.date().refine(date => date !== null, {
     message: 'Vui lòng chọn ngày sinh',
   }),
-  gender: z.enum(['Nam', 'Nữ', 'Khác'], {
+  gender: z.enum(['male', 'female', 'other'], {
     message: 'Vui lòng chọn giới tính',
   }),
 });

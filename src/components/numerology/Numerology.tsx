@@ -17,7 +17,7 @@ const Numerology = ({ baseUrl, numerologyResult }: Props) => {
       <PreviousNavigation baseUrl="/numerology" />
       <h1 className="text-shadow-custom text-medium-custom">{t('discoverYourself')}</h1>
       <p className="text-shadow-custom text-small-custom">{t('understandYourself')}</p>
-      <Image width={500} height={500} className="w-[250px] h-[160px]" alt="logo 9x9" src="/assets/logo-9x9.png" />
+      <Image width={500} height={500} className="w-[250px] h-40" alt="logo 9x9" src="/assets/logo-9x9.png" />
       <StarChart numerologyResult={numerologyResult} />
       <div className="w-full flex justify-center mt-6">
         <ButtonMeaning baseUrl={baseUrl} />

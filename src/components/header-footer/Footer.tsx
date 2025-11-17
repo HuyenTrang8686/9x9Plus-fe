@@ -1,12 +1,11 @@
 'use client';
+import { Link, usePathname } from '@/libs/i18nNavigation';
 import ControllerIcon from '@/libs/shared/icons/Controller';
 import HouseIcon from '@/libs/shared/icons/House';
 import HumanIcon from '@/libs/shared/icons/Human';
 import NotesIcon from '@/libs/shared/icons/Notes';
 import QuestionIcon from '@/libs/shared/icons/Question';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 export function Footer() {
   const t = useTranslations('navigation');
