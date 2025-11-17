@@ -12,6 +12,7 @@ import StarIcon from '@/libs/shared/icons/Star';
 import SuitcaseIcon from '@/libs/shared/icons/Suitcase';
 import TeleScopeIcon from '@/libs/shared/icons/telescope';
 import type { NumerologyResponse } from '@/types/numberology';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   baseUrl: string;
@@ -33,15 +34,16 @@ const MeaningIcon = [
 ];
 
 const Meaning = ({ baseUrl, numerologyResult }: Props) => {
+  const t = useTranslations('numerology');
   return (
     <div className="overflow-y-auto bg-meaning flex flex-col items-center pt-10 relative px-3 min-h-screen h-[200px] pb-16 overflow-x-hidden">
       <PreviousNavigation baseUrl={baseUrl} isReload />
 
       <h1 className="text-shadow-custom text-medium-custom">
-        Thông điệp
+        {t('message')}
       </h1>
       <h2 className="text-shadow-custom text-small-custom">
-        Số
+        {t('number')}
         {' '}
         {numerologyResult?.number.mainNumber}
         {' '}

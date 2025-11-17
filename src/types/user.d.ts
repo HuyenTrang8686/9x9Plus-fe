@@ -39,10 +39,13 @@ type BoxHistoryItems = {
   boxNumber: number;
   open: boolean;
   time: Date;
-  title: string;
   description: {
+    title: {
+      en: string;
+      zh: string;
+      vi: string;
+    };
     content: string;
-    title: string;
   };
 
 };

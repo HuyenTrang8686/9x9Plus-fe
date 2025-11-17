@@ -20,6 +20,7 @@ import WalletIcon from '@/libs/shared/icons/Wallet';
 import { formatAddress, handleClipboardCopy, isClient } from '@/libs/utils';
 import { useQueryClient } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 type User = {
@@ -58,6 +59,7 @@ type NodePaginationState = {
 };
 
 export default function Tree() {
+  const t = useTranslations('common');
   const hasFetched = useRef(false);
   const [address, setAddress] = useState<string>('');
   const [currentFetchingAddress, setCurrentFetchingAddress] = useState<string>('');
@@ -151,7 +153,7 @@ export default function Tree() {
         id: 'root-previous',
         level: 1,
         originalAddress: address,
-        address: `Trở lại`,
+        address: t('goBack'),
         type: 'previous',
         paginationData: {
           currentPage,
@@ -181,7 +183,7 @@ export default function Tree() {
         id: 'root-more',
         level: 1,
         originalAddress: address,
-        address: `Xem thêm`,
+        address: t('seeMore'),
         type: 'more',
         paginationData: {
           currentPage,
@@ -200,7 +202,7 @@ export default function Tree() {
         id: `root-share-${i}`,
         level: 1,
         originalAddress: address,
-        address: 'Chia sẻ',
+        address: t('share'),
         type: 'share',
       });
     }
@@ -284,7 +286,7 @@ export default function Tree() {
         id: `${parentId}-previous-${currentPage}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: `Trở lại`,
+        address: t('goBack'),
         type: 'previous',
         paginationData: {
           currentPage,
@@ -314,7 +316,7 @@ export default function Tree() {
         id: `${parentId}-more-${currentPage}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: `Xem thêm`,
+        address: t('seeMore'),
         type: 'more',
         paginationData: {
           currentPage,
@@ -333,7 +335,7 @@ export default function Tree() {
         id: `${parentId}-share-${i}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: 'Chia sẻ',
+        address: t('share'),
         type: 'share',
       });
     }
@@ -540,7 +542,7 @@ export default function Tree() {
     return (
       <div key={node.id} className="relative">
         <div className="flex items-center gap-3 mb-3 w-[250px]" style={{ marginLeft: `${marginLeft}px` }}>
-          <span className="text-white text-sm font-medium min-w-[1px] w-[15px]">
+          <span className="text-white text-sm font-medium min-w-px w-[15px]">
             Lv.
             {node.level}
           </span>
@@ -553,7 +555,7 @@ export default function Tree() {
             onClick={() => handleNodeAction(node)}
           >
             {renderIcon(node.type)}
-            <span className="text-white text-[0.625rem] font-[700] -translate-x-4">{node.address}</span>
+            <span className="text-white text-[0.625rem] font-bold -translate-x-4">{node.address}</span>
           </Button>
 
           {node.level < 9 && node.type === 'folder' && (
@@ -597,8 +599,8 @@ export default function Tree() {
           <PreviousNavigation isReload />
           {!isSearching && (
             <>
-              <h2 className="text-shadow-custom text-[1rem] font-[274]">Hành trình kết nối</h2>
-              <h1 className="text-shadow-custom text-[1.25rem] font-[700]">Bản đồ lan tỏa hành trình</h1>
+              <h2 className="text-shadow-custom text-[1rem] font-[274]">{t('connectionJourney')}</h2>
+              <h1 className="text-shadow-custom text-[1.25rem] font-bold">{t('journeySpreadMap')}</h1>
             </>
           )}
           <div className={`absolute right-3 ${isSearching ? 'w-4/5' : 'w-0'} transition-all duration-300 -translate-y-1`}>
@@ -614,7 +616,7 @@ export default function Tree() {
                 className={`absolute top-0 border ${isSearching ? 'h-11 block ' : 'h-0 hidden'} text-white rounded-full pe-10`}
                 onKeyDown={e => e.key === 'Enter' && handleSearchAddress()}
                 ref={searchRef}
-                placeholder="Nhập địa chỉ ví"
+                placeholder={t('enterWalletAddress')}
                 style={{
                   background: 'linear-gradient(180deg, rgba(104, 218, 242, 0.50) 0%, rgba(28, 91, 185, 0.50) 95.1%)'
                 }}
@@ -624,11 +626,11 @@ export default function Tree() {
         </div>
         {isError && (
           <div className="text-white text-center h-[calc(100vh-170px)] flex flex-col items-center justify-center gap-4">
-            <p className="text-lg font-bold">Không tìm thấy dữ liệu</p>
-            <p className="text-sm">Vui lòng thử lại sau.</p>
+            <p className="text-lg font-bold">{t('dataNotFound')}</p>
+            <p className="text-sm">{t('tryAgainLater')}</p>
             <div>
               <Button className="button-base" onClick={() => window.location.reload()}>
-                Quay lại
+                {t('back')}
               </Button>
             </div>
           </div>

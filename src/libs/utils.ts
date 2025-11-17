@@ -33,9 +33,9 @@ export const formatMsToCountdown = (ms: number) => {
   return `${minutes}:${seconds}`;
 };
 
-export const handleClipboardCopy = (data: string | number) => {
+export const handleClipboardCopy = (data: string | number, successMessage?: string) => {
   navigator.clipboard.writeText(data.toString());
-  toast.success('Đã sao chép địa chỉ ví');
+  toast.success(successMessage || 'Copied!');
 };
 
 export const isClient = typeof window !== 'undefined';

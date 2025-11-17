@@ -18,12 +18,14 @@ import ChevronDown from '@/libs/shared/icons/ChevronDown';
 import { formatDate } from '@/libs/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const ProfileForm = () => {
+  const t = useTranslations('numerology');
   const [showDateSheet, setShowDateSheet] = useState(false);
   const [showGenderSheet, setShowGenderSheet] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -79,10 +81,10 @@ const ProfileForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Full Name */}
           <div>
-            <Label className="block text-white text-sm font-medium mb-2">Họ và tên</Label>
+            <Label className="block text-white text-sm font-medium mb-2">{t('fullName')}</Label>
             <Input
               {...register('fullName')}
-              placeholder="Nhập đầy đủ họ tên của bạn"
+              placeholder={t('fullNamePlaceholder')}
               className="input-numerology"
             />
             {errors.fullName && <p className="mt-1 text-sm text-red-300">{errors.fullName.message}</p>}
@@ -90,7 +92,7 @@ const ProfileForm = () => {
 
           {/* Birth Date */}
           <div>
-            <Label className="block text-white text-sm font-medium mb-2">Ngày tháng năm sinh</Label>
+            <Label className="block text-white text-sm font-medium mb-2">{t('birthDate')}</Label>
             <Controller
               name="birthDate"
               control={control}
@@ -103,7 +105,7 @@ const ProfileForm = () => {
                       className="input-numberology w-full flex justify-between"
                     >
                       <span className={field.value ? 'text-gray-800' : 'text-gray-500'}>
-                        {field.value ? formatDate(field.value) : 'Chọn ngày tháng năm sinh của bạn'}
+                        {field.value ? formatDate(field.value) : t('selectBirthDate')}
                       </span>
                       <CalendarIcon />
                     </Button>
@@ -128,7 +130,7 @@ const ProfileForm = () => {
 
           {/* Gender */}
           <div>
-            <Label className="block text-white text-sm font-medium mb-2">Giới tính</Label>
+            <Label className="block text-white text-sm font-medium mb-2">{t('gender')}</Label>
             <Controller
               name="gender"
               control={control}
@@ -141,25 +143,29 @@ const ProfileForm = () => {
                       className="input-numberology w-full flex justify-between"
                     >
                       <span className={field.value ? 'text-gray-800' : 'text-gray-500'}>
-                        {field.value || 'Chọn giới tính của bạn'}
+                        {field.value || t('selectGender')}
                       </span>
                       <ChevronDown className="w-5 h-5 text-gray-600" />
                     </Button>
                   </SheetTrigger>
                   <SheetContent side="bottom" className="rounded-t-lg bg-calendar">
                     <SheetHeader>
-                      <SheetTitle className="text-center text-white text-[1rem] font-[510]">Giới tính</SheetTitle>
+                      <SheetTitle className="text-center text-white text-[1rem] font-[510]">{t('gender')}</SheetTitle>
                       <SheetDescription></SheetDescription>
                     </SheetHeader>
                     <div>
-                      {(['Nam', 'Nữ', 'Khác'] as const).map(gender => (
+                      {([
+                        { value: 'Nam', label: t('male') },
+                        { value: 'Nữ', label: t('female') },
+                        { value: 'Khác', label: t('other') }
+                      ] as const).map(gender => (
                         <button
-                          key={gender}
+                          key={gender.value}
                           type="button"
-                          onClick={() => handleGenderSelect(gender)}
+                          onClick={() => handleGenderSelect(gender.value)}
                           className="w-full p-5 text-center text-white rounded-lg transition-colors border-t active:bg-gray-200 hover:bg-gray-500"
                         >
-                          {gender}
+                          {gender.label}
                         </button>
                       ))}
                     </div>
@@ -176,7 +182,7 @@ const ProfileForm = () => {
             disabled={!isValid}
             className="button-base w-full"
           >
-            Phân tích
+            {t('calculate')}
           </Button>
         </form>
       </div>

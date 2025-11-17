@@ -7,6 +7,7 @@ import RightArrowIcon from '@/libs/shared/icons/RightArrow2';
 import { useQueryClient } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 /* eslint-disable react/no-array-index-key */
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'nextjs-toploader/app';
 import type { ReactNode } from 'react';
@@ -22,11 +23,13 @@ type Mission = {
   isCompleted: boolean;
 };
 const Page = () => {
+  const t = useTranslations('mission');
   const { data: dataMission, isSuccess, isLoading } = useGetMission();
+  const miningCount = (dataMission?.miningTimes ?? 9) >= 9 ? 9 : dataMission?.miningTimes || 0;
   const data: Mission[] = [
     {
-      title: 'Đào đủ 9 lượt/ngày',
-      describe: `Hoàn thành 9 vòng đào vàng mỗi ngày - ${(dataMission?.miningTimes ?? 9) >= 9 ? 9 : dataMission?.miningTimes || 0}/9`,
+      title: t('miningDaily'),
+      describe: t('miningDailyDesc', { count: miningCount }),
       score: '+99',
       isCompleted: dataMission?.miningTimes === 9
     },
@@ -46,69 +49,45 @@ const Page = () => {
     //   score: '+999'
     // },
     {
-      title: 'Kết nối bạn mới',
-      describe: (
-        <p>
-          Mời thêm bạn bè tham gia
-          {' '}
-          <strong>
-            9x9Plus
-          </strong>
-          {' '}
-          (Với mỗi 1 người bạn mời bạn sẽ nhận được 999 điểm thịnh vượng)
-        </p>
-      ),
+      title: t('connectNewFriend'),
+      describe: t.rich('connectNewFriendDesc', {
+        strong: chunks => <strong>{chunks}</strong>
+      }),
       score: '+999',
       isCompleted: false
 
     },
     {
-      title: 'Lan tỏa giá trị',
-      describe: 'Like & chia sẻ video trên mạng xã hội',
+      title: t('spreadValue'),
+      describe: t('spreadValueDesc'),
       score: '+999',
       type: 'shareLink',
       to: 'https://www.facebook.com/share/19nBvnkfwo/?mibextid=LQQJ4d',
       isCompleted: dataMission?.shareLink === true
     },
     {
-      title: 'Tham gia group cộng đồng',
-      describe: 'Gia nhập cộng đồng chính thức 9x9Plus',
+      title: t('joinCommunity'),
+      describe: t('joinCommunityDesc'),
       score: '+999',
       type: 'joinGroup',
       to: 'https://t.me/+WrtBnbRub-k5ZWM1',
       isCompleted: dataMission?.joinGroup === true
     },
     {
-      title: 'Tìm hiểu về thần số học',
-      describe: (
-        <p>
-          Đọc về thần số học
-          {' '}
-          <strong>
-            9x9Plus
-          </strong>
-          {' '}
-          để hiểu rõ hơn về bản thân
-        </p>
-      ),
+      title: t('learnNumerology'),
+      describe: t.rich('learnNumerologyDesc', {
+        strong: chunks => <strong>{chunks}</strong>
+      }),
       type: 'numerologyPolicy',
       score: '',
       to: '/mission/numerology-policy',
       isCompleted: false
     },
     {
-      title: 'Tìm hiểu về 9x9Plus',
-      describe: (
-        <p>
-          Đọc và hiểu rõ về dự án
-          {' '}
-          <strong>
-            9x9Plus
-          </strong>
-          {' '}
-          để mở khóa hành trình nhanh hơn
-        </p>
-      ),
+      title: t('learnAbout9x9'),
+      describe: t.rich('learnAbout9x9Desc', {
+        strong: chunks => <strong>{chunks}</strong>
+      }),
       type: 'readTerms',
       score: '',
       to: '/mission/info',
@@ -169,7 +148,7 @@ const Page = () => {
 
     if (!isCompleted) {
       toast.success(
-        'Chúc mừng bạn đã nhận được phần thưởng từ nhiệm vụ này!',
+        t('rewardSuccess'),
         { duration: 3000 }
       );
     }
@@ -179,10 +158,10 @@ const Page = () => {
   }, [router]);
   return (
     <div className="bg-9x9 min-h-screen flex flex-col items-center text-center p-4 text-white">
-      <h1 className="font-light text-xl text-blue-200 mb-2">9x9Plus</h1>
-      <h2 className="font-semibold text-base mb-6 drop-shadow-lg">Nhiệm vụ</h2>
+      <h1 className="font-light text-xl text-blue-200 mb-2">{t('pageTitle')}</h1>
+      <h2 className="font-semibold text-base mb-6 drop-shadow-lg">{t('title')}</h2>
 
-      <div className="w-full max-w-md h-[calc(100vh-180px)] overflow-y-auto">
+      <div className="w-full max-w-md h-[calc(100vh-150px)] overflow-y-auto">
         {isSuccess && data.map((item, index) => (
           <button
             type="button"
@@ -191,12 +170,12 @@ const Page = () => {
               to: item.to,
               isCompleted: item.isCompleted
             })}
-            className={`relative my-4 rounded-[0.75rem] p-4 flex border items-center gap-3 ${item.isCompleted ? 'border-[#52C41A] bg-[rgba(82,196,26,0.25)]' : 'border-[#68DAF2] bg-[rgba(0,39,102,0.25)]'}`}
+            className={`relative my-4 rounded-[0.75rem] p-4 flex border items-center w-full gap-3 ${item.isCompleted ? 'border-[#52C41A] bg-[rgba(82,196,26,0.25)]' : 'border-[#68DAF2] bg-[rgba(0,39,102,0.25)]'}`}
             key={index}
 
           >
             {item.isCompleted && (
-              <div className="absolute -right-[0.5px] -top-[0.5px] bg-[#52C41A] size-[1.5rem] flex items-center justify-center rounded-tr-[0.75rem] rounded-bl-[0.75rem]">
+              <div className="absolute -right-[0.5px] -top-[0.5px] bg-[#52C41A] size-6 flex items-center justify-center rounded-tr-[0.75rem] rounded-bl-[0.75rem]">
                 <GoodSign2Icon />
               </div>
             )}
@@ -211,16 +190,16 @@ const Page = () => {
               alt="logo"
             />
 
-            <div className="flex-grow text-left">
+            <div className="grow text-left">
               <p className="font-semibold text-base drop-shadow-sm mb-1">
                 {item.title}
               </p>
-              <div className="text-sm text-blue-100 drop-shadow-sm flex space-x-3">
+              <div className="text-sm text-blue-100 drop-shadow-sm  space-x-3">
                 {item.describe}
               </div>
             </div>
 
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex items-center gap-2 shrink-0">
               <p className="text-shadow-custom font-medium drop-shadow-sm">
                 {item.score}
               </p>

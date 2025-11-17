@@ -5,14 +5,23 @@ export type BoxRes = {
 };
 
 export type BoxDetailRes = {
-  title: string;
+  title: {
+    vi: string;
+    en: string;
+    zh: string;
+  };
+
   invitedCount: number;
   totalUserSystem: number;
   levelUsers: {
     _id: number;
     userCount: number;
   }[];
-  content: string;
+  content: {
+    vi: string;
+    en: string;
+    zh: string;
+  };
   openTime: string;
   boxNumber: number;
   invitedBy: string;

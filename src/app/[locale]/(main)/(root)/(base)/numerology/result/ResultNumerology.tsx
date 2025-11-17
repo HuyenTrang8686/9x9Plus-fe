@@ -1,16 +1,20 @@
 import { numerologyRequest } from '@/app/http/requests/numerology';
 import Meaning from '@/components/numerology/Meaning';
 import Numerology from '@/components/numerology/Numerology';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 const ResultNumerology = async ({ searchParams }: { searchParams: Promise<Record<'name' | 'birth' | 'meaning', string | undefined>> }) => {
+  const t = await getTranslations('numerology');
   const params = await searchParams;
   if (!params.name || !params.birth) {
-    return <div className="min-h-screen bg-numerology text-center flex items-center justify-center text-shadow-custom">Missing name or birth date parameters.</div>;
+    return <div className="min-h-screen bg-numerology text-center flex items-center justify-center text-shadow-custom">{t('missingParameters')}</div>;
   }
+  const locale = await getLocale() as 'en' | 'zh' | 'vi';
+
   const name = params.name ?? '';
   const birth = params.birth ?? '';
   const meaning = params.meaning;
-  const numerologyResult = await numerologyRequest.getNumerology(name, birth);
+  const numerologyResult = await numerologyRequest.getNumerology(name, birth, locale);
 
   const baseUrl = `/numerology/result?name=${encodeURIComponent(name)}&birth=${encodeURIComponent(birth)}`;
 

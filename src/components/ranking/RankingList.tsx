@@ -7,6 +7,7 @@ import GoldMedalIcon from '@/libs/shared/icons/GoldMedal';
 import SilverMedalIcon from '@/libs/shared/icons/SilverMedal';
 import { formatAddress } from '@/libs/utils';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -19,6 +20,7 @@ const top3Ranking = [
 //
 
 const RankingList = () => {
+  const t = useTranslations('ranking');
   const { ref, inView } = useInView();
 
   const user = useUserRanking();
@@ -31,7 +33,7 @@ const RankingList = () => {
   if (me) {
     dataRanking?.unshift({
       _id: 'my-ranking-placeholder',
-      address: 'Tôi',
+      address: t('me'),
       score: me.score,
       myRanking: !me.score ? '999+' : me.rank,
     });
@@ -50,9 +52,9 @@ const RankingList = () => {
           <p className="text-shadow-custom text-xs">
             {dataUserTotal.toLocaleString()}
             {' '}
-            người chơi
+            {t('players')}
           </p>
-          <p className="text-shadow-custom text-xs">Tổng số điểm nhận được</p>
+          <p className="text-shadow-custom text-xs">{t('totalPoints')}</p>
         </div>
         {
           isSuccess && dataRanking?.map((player, index) => {

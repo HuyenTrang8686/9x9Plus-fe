@@ -6,14 +6,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import PenIcon from '@/libs/shared/icons/Pen';
 import { Loader2, User2Icon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   name: string | undefined;
 };
 const InputName = ({ name }: Props) => {
+  const t = useTranslations('profile');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { mutate, isPending, isSuccess } = useUpdateMe();
+  const { mutate, isPending, isSuccess } = useUpdateMe({
+    onErrorMessage: t('updateFailed'),
+    onSuccessMessage: t('updateSuccess')
+  });
   const userNameRef = useRef<HTMLInputElement>(null);
   const handleConfirm = () => {
     if (!userNameRef.current) {
@@ -45,13 +50,13 @@ const InputName = ({ name }: Props) => {
             <DialogTitle className="text-shadow-custom text-center flex items-center text-xl">
               <User2Icon className="mr-2" />
               {' '}
-              Thay đổi tên người dùng
+              {t('changeUsername')}
             </DialogTitle>
             <DialogDescription>
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-2">
-            <Label htmlFor="current-username" className="text-shadow-custom text-left">Tên người dùng hiện tại</Label>
+            <Label htmlFor="current-username" className="text-shadow-custom text-left">{t('currentUsername')}</Label>
             <Input
               value={name || ''}
               disabled
@@ -61,11 +66,11 @@ const InputName = ({ name }: Props) => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="new-username" className="text-shadow-custom text-left">
-              Tên người dùng mới
+              {t('newUsername')}
             </Label>
             <Input
               id="new-username"
-              placeholder="Nhập tên người dùng mới"
+              placeholder={t('newUsernamePlaceholder')}
               className="text-white w-60"
               ref={userNameRef}
             />
@@ -78,14 +83,14 @@ const InputName = ({ name }: Props) => {
               className="bg-transparent text-white w-1/2"
               onClick={() => setIsOpen(false)}
             >
-              Hủy bỏ
+              {t('cancel')}
             </Button>
             <Button
               className="w-1/2 button-custom"
               disabled={isPending}
               onClick={handleConfirm}
             >
-              {isPending ? <Loader2 className="animate-spin" /> : 'Xác nhận'}
+              {isPending ? <Loader2 className="animate-spin" /> : t('confirm')}
             </Button>
           </div>
         </DialogContent>

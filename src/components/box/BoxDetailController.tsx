@@ -6,11 +6,13 @@ import ConnectionIcon from '@/libs/shared/icons/Connection';
 import CopyIcon2 from '@/libs/shared/icons/Copy2';
 import RightArrowIcon from '@/libs/shared/icons/RightArrow';
 import { handleClipboardCopy, isClient } from '@/libs/utils';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useEffect, useState } from 'react';
 
 const BoxDetailController = () => {
+  const t = useTranslations('box');
   const urlSharing = isClient ? `${window.location.origin}/login` : '';
   const [address, setAddress] = useState<string | undefined>();
   const router = useRouter();
@@ -25,7 +27,7 @@ const BoxDetailController = () => {
       <button type="button" className="box-card-detail w-full flex items-center relative cursor-pointer" onClick={() => handleClipboardCopy(`${urlSharing}?invitedBy=${address}`)}>
         <ConnectionIcon className="translate-y-[2px] w-10" />
         <p className="text-shadow-custom text-[1rem] font-[590]">
-          Lan tỏa hành trình
+          {t('spreadJourney')}
         </p>
         <CopyIcon2 className="absolute right-0 top-0 size-14" />
       </button>
@@ -36,7 +38,7 @@ const BoxDetailController = () => {
       >
         <ChartIcon className="translate-y-[2px] w-10" />
         <p className="text-shadow-custom text-[1rem] font-[590]">
-          Bản đồ lan tỏa giá trị
+          {t('valueSpreadMap')}
         </p>
         <RightArrowIcon className="absolute right-0 top-0 size-14" />
       </button>

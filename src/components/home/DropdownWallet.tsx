@@ -3,12 +3,14 @@ import { deleteCookie } from '@/app/actions/cookie';
 import authRequests from '@/app/http/requests/auth';
 import DialogError from '@/components/DialogError';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { usePathname } from '@/libs/i18nNavigation';
 import CopyIcon from '@/libs/shared/icons/Copy';
 import ExitIcon from '@/libs/shared/icons/Exit';
 import LoadingDots from '@/libs/shared/icons/LoadingDots';
 import UserIcon from '@/libs/shared/icons/User';
 import { formatAddress, handleClipboardCopy, NumberFormat } from '@/libs/utils';
 import { useQueryClient } from '@tanstack/react-query';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -35,6 +37,9 @@ let httpWeb3Instance: Web3 | null = null;
 let httpContractInstance: any = null;
 
 const DropdownWallet = ({ address }: Props) => {
+  const t = useTranslations('wallet');
+  const locale = useLocale();
+  const pathname = usePathname();
   const [balance, setBalance] = useState<string | undefined>(undefined);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isWarningNetwork, setIsWarningNetWork] = useState<boolean>(false);
@@ -153,18 +158,34 @@ const DropdownWallet = ({ address }: Props) => {
     };
   }, []);
 
+  const handleLanguageChange = (newLocale: string) => {
+    router.push(`/${newLocale}${pathname}`);
+  };
+
   if (!address) {
     return null;
   }
 
   return (
-    <div className="flex items-center">
-      <div className="text-shadow-custom text-[0.75rem] font-[510] border-r border-r-white px-3 me-3 h-5 flex items-center">
+    <div className="flex items-center gap-3">
+      <select
+        value={locale}
+        onChange={e => handleLanguageChange(e.target.value)}
+        className="bg-white/10 text-white text-[0.75rem] font-[510] rounded-lg px-2 py-1 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/30"
+        style={{
+          textShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        <option value="vi" className="bg-[#1C5BB9] text-white">VI</option>
+        <option value="en" className="bg-[#1C5BB9] text-white">EN</option>
+        <option value="zh" className="bg-[#1C5BB9] text-white">中文</option>
+      </select>
+      <div className="text-shadow-custom text-[0.75rem] font-[510] border-r border-r-white px-3 h-5 flex items-center">
         {!balance ? <LoadingDots size="size-1" /> : <span>{balance}</span>}
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger
-          className="bg-white rounded-[6.25rem] w-[5.625rem] h-[1.875rem] text-[0.75rem] p-1 text-white gap-[0.25rem]"
+          className="bg-white rounded-[6.25rem] w-22.5 h-7.5 text-[0.75rem] p-1 text-white gap-1"
           style={{
             boxShadow: '0px 20px 50px 0px rgba(54, 114, 233, 0.41)',
             background: 'linear-gradient(180deg, #68DAF2 0%, #1C5BB9 95.1%)',
@@ -174,8 +195,8 @@ const DropdownWallet = ({ address }: Props) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="dropdown-address text-white">
           <DropdownMenuItem className="w-full" onClick={() => router.push(`/profile`)}>
-            <UserIcon className="absolute left-1 -top-[1px]" />
-            <span className="w-full translate-x-8">Profile</span>
+            <UserIcon className="absolute left-1 -top-px" />
+            <span className="w-full translate-x-8">{t('profile')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center justify-start !focus:bg-red-500 w-full"
@@ -186,14 +207,14 @@ const DropdownWallet = ({ address }: Props) => {
             {' '}
           </DropdownMenuItem>
           <DropdownMenuItem className="w-full" onClick={handleLogout}>
-            <ExitIcon className=" absolute left-1 -top-[1px]" />
-            <span className="w-full text-right -translate-x-1">Disconnect</span>
+            <ExitIcon className=" absolute left-1 -top-px" />
+            <span className="w-full text-right -translate-x-1">{t('disconnect')}</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <DialogError
-        title="Đổi mạng sang BNB"
-        des="Vui lòng kết nối mạng BNB để sử dụng app"
+        title={t('switchToBNB')}
+        des={t('connectBNBNetwork')}
         isOpen={isWarningNetwork}
         onClick={handleLogout}
         isLoading={isLoggingOut}

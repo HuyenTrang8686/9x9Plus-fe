@@ -3,9 +3,12 @@ import { Button } from '@/components/ui/button';
 import useSafePalWallet from '@/hooks/useSafePalWallet';
 import SafePalIcon from '@/libs/shared/icons/SafePal';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function SafePal({ invitedBy, spillover }: { invitedBy: string | null; spillover: string | null }) {
   const { safePalMethods, isConnecting } = useSafePalWallet();
+  const t = useTranslations('auth');
+
   return (
     <main className="flex-1">
       <Button
@@ -19,7 +22,7 @@ export default function SafePal({ invitedBy, spillover }: { invitedBy: string | 
         {isConnecting ? <Loader2 className="animate-spin" /> : (
           <>
             <span>
-              Kết nối ví
+              {t('connectWallet')}
             </span>
             <SafePalIcon className="ml-2 size-20" />
           </>

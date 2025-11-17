@@ -13,15 +13,20 @@ export const useGetMe = () => {
   });
 };
 
-export const useUpdateMe = () => {
+type UpdateMeOptions = {
+  onErrorMessage?: string;
+  onSuccessMessage?: string;
+};
+
+export const useUpdateMe = (options?: UpdateMeOptions) => {
   const router = useRouter();
   return useMutation({
     mutationFn: async (name: string) => await userRequest.userUpdateMe(name),
     onError: () => {
-      toast.error('Cập nhật thông tin không thành công!');
+      toast.error(options?.onErrorMessage || 'Update failed!');
     },
     onSuccess: () => {
-      toast.success('Cập nhật thông tin thành công!');
+      toast.success(options?.onSuccessMessage || 'Update successful!');
       handleRevalidateTag('get-me');
       router.refresh();
     },

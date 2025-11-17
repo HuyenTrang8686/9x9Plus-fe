@@ -2,6 +2,7 @@
 
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
@@ -28,6 +29,7 @@ function getWeb3AndContract() {
   return { web3: web3Singleton!, contract: contractSingleton! };
 }
 const TransactionHash = ({ address, currentBox, latestOpenedBox }: Props) => {
+  const t = useTranslations('box');
   const router = useRouter();
   const isProcessing = useRef<boolean>(false);
   let intervalOpenBox: NodeJS.Timeout | null = null;
@@ -109,10 +111,10 @@ const TransactionHash = ({ address, currentBox, latestOpenedBox }: Props) => {
                 handleRevalidatePath('/'),
               ]);
               isProcessing.current = true;
-              toast.success('Mở box thành công!');
+              toast.success(t('openBoxSuccess'));
             } catch (error) {
               console.error('Error opening box:', error);
-              toast.error('Mở box thất bại!, vui lòng liên hệ với admin');
+              toast.error(t('openBoxFailed'));
             } finally {
               router.refresh();
               localStorage.removeItem('LoadingItem');
@@ -125,7 +127,7 @@ const TransactionHash = ({ address, currentBox, latestOpenedBox }: Props) => {
 
         intervalOpenBox = setInterval(handleRetryOpenBox, 2000);
       } catch {
-        toast.error('Có lỗi xảy ra trong quá trình kiểm tra giao dịch. Vui lòng liên hệ với admin nếu lỗi vẫn tiếp diễn.');
+        toast.error(t('transactionCheckError'));
       }
     };
     handleBoxError();

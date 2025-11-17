@@ -1,16 +1,19 @@
 import userRequest from '@/app/http/requests/user';
 import ConfirmDialog from '@/components/home/ConfirmDialog';
 import TransactionHash from '@/components/TransactionHash';
+import { getLocale } from 'next-intl/server';
 
 import Image from 'next/image';
 
 const BoxTable = async () => {
+  const locale = await getLocale() as 'en' | 'zh' | 'vi';
   const userData = await userRequest.userGetMe();
   if (!userData) {
     return null;
   }
   return (
     <>
+
       <div className="grid grid-cols-3 gap-3 w-full px-6 mt-6 pb-20 max-">
         {
           userData.openBoxHistories.map((item, index) => (
@@ -26,7 +29,7 @@ const BoxTable = async () => {
                   {' '}
                   {index + 1}
                 </p>
-                <p className="text-shadow-custom text-nowrap font-[590] text-[10px]">{item.description.title}</p>
+                <p className="text-shadow-custom text-nowrap font-[590] text-[10px]">{item.description.title[locale]}</p>
                 <ConfirmDialog boxNumber={item.boxNumber} isOpenedBox={item.open} currentBox={userData.currentBox} address={userData.address} />
               </div>
             </div>

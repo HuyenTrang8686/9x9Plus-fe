@@ -4,12 +4,14 @@ import { handleRevalidateTag } from '@/app/actions/revalidation';
 import { Button } from '@/components/ui/button';
 import GamePad2 from '@/libs/shared/icons/GamePad2';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useEffect, useState } from 'react';
 
 const revalidateList = ['get-me', 'get-mission', 'user-ranking', 'get-rest-time'];
 const ResultController = () => {
+  const t = useTranslations('goldMining');
   const [playLeft, setPlayLeft] = useState<string | undefined>('0');
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -35,17 +37,13 @@ const ResultController = () => {
   return (
     <div className="w-full flex flex-col items-center space-y-3 fixed bottom-26">
       <Button
-        className="button-base items-center max-w-[21.4375rem] w-full"
+        className="button-base items-center max-w-85.75 w-full"
         onClick={handleSubmit}
       >
         <GamePad2 />
         <span>
-          Chơi lại (còn
-          {' '}
-          {playLeft}
-          /9)
+          {t('playAgain', { count: playLeft as unknown as number })}
         </span>
-
       </Button>
     </div>
   );

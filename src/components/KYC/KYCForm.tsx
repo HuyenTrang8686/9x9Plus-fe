@@ -8,12 +8,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 const KYCForm = () => {
+  const t = useTranslations('kyc');
   const form = useForm<KYCFormData>({
     resolver: zodResolver(KYCSchema),
     defaultValues: {
@@ -26,13 +28,13 @@ const KYCForm = () => {
   const onSubmit = async (data: KYCFormData) => {
     try {
       const response = await userRequest.userKyc(data);
-      toast.success(response?.message || 'Yêu cầu KYC đã được gửi thành công!');
+      toast.success(response?.message || t('kycRequestSuccess'));
       router.push(`/verify-email?name=${encodeURIComponent(data.email)}`);
     } catch (err: unknown) {
       if (err instanceof ApiException) {
         toast.error(err.message);
       } else {
-        toast.error('Đã xảy ra lỗi khi gửi yêu cầu KYC. Vui lòng thử lại sau.');
+        toast.error(t('kycRequestError'));
       }
     }
     form.reset();
@@ -48,10 +50,10 @@ const KYCForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-center gap-2 text-white">
-                  Email
+                  {t('email')}
                 </FormLabel>
                 <FormControl>
-                  <Input className="input-kyc" placeholder="Nhập email của bạn" {...field} />
+                  <Input className="input-kyc" placeholder={t('emailPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -62,10 +64,10 @@ const KYCForm = () => {
             {form.formState.isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Đang xác nhận...
+                {t('submitting')}
               </>
             ) : (
-              'Xác nhận'
+              t('submit')
             )}
           </Button>
         </form>

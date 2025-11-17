@@ -1,3 +1,5 @@
+'use client';
+
 import { montserrat } from '@/app/fonts/montserrat';
 import IntroductionFooter from '@/components/introduction/IntroductionFooter';
 import GamePadIcon from '@/libs/shared/icons/GamePad';
@@ -5,107 +7,80 @@ import GraphUpIcon from '@/libs/shared/icons/GraphUp';
 import HammerIcon from '@/libs/shared/icons/Hammer';
 import HeartLockIcon from '@/libs/shared/icons/HeartLock';
 import RocketIcon from '@/libs/shared/icons/Rocket';
-
-const dataIntro = [
-  {
-    icon: RocketIcon,
-    title: 'TẦM NHÌN',
-    des: (
-      <p>
-        Mỗi con người đều mang trong mình một kho báu tiềm ẩn.
-        {' '}
-        <strong className="text-[#BAE7FF] font-[700]">9x9Plus</strong>
-        {' '}
-        ra đời để cùng bạn khám phá, nuôi dưỡng và lan tỏa những giá trị đó – kiến tạo một cộng đồng nơi ai cũng được tỏa sáng bằng trí tuệ, yêu thương và sự kết nối.
-      </p>
-    ),
-  },
-  {
-    icon: HeartLockIcon,
-    title: 'SỨ MỆNH',
-    des: (
-      <ul className="list-inside space-y-1">
-        <li>
-          Xây dựng một không gian an toàn – nhân văn – truyền cảm hứng.
-        </li>
-        <li>
-          Giúp bạn hiểu chính mình, mở khóa năng lực và khát vọng.
-        </li>
-        <li>
-          Đồng hành trong hành trình: học hỏi – hành động – chia sẻ – cộng hưởng.
-        </li>
-      </ul>
-    ),
-  },
-  {
-    icon: GraphUpIcon,
-    title: 'GIÁ TRỊ CỐT LÕI',
-    des: (
-      <>
-        <p>
-          <strong>An tâm</strong>
-          : Minh bạch - Rõ ràng - Đồng hành cùng nhau, không ai bị bỏ lại.
-        </p>
-        <p>
-          <strong>Lan tỏa</strong>
-          : Kết nối - Chia sẻ - Cộng hưởng giá trị.
-        </p>
-        <p>
-          <strong>Bền vững</strong>
-          : Vận hành tự chủ, minh bạch, ứng dụng công nghệ Web3 vì mục tiêu cộng đồng.
-        </p>
-      </>
-    ),
-  },
-  {
-    icon: GamePadIcon,
-    title: 'CÁCH THỨC THAM GIA',
-    des: (
-      <>
-        <ol className="list-inside space-y-1">
-          <li>
-            Đọc và đồng thuận với Nguyên tắc đồng hành.
-          </li>
-          <li>
-            Bắt đầu thử thách Kho báu bên trong bạn để mở từng hộp thông điệp.
-          </li>
-          <li>
-            Thực hành những hành động nhỏ mỗi ngày:
-            <ul className="list-inside space-y-1">
-              <li>Viết lời biết ơn</li>
-              <li>Ghi nhận một thành công</li>
-              <li>Chia sẻ một giá trị</li>
-            </ul>
-          </li>
-          <li>
-            Kết nối và đồng hành cùng cộng đồng
-            <strong>
-              9x9Plus
-            </strong>
-            .
-          </li>
-        </ol>
-      </>
-    ),
-  },
-  {
-    icon: HammerIcon,
-    title: 'LUẬT CHƠI',
-    des: (
-      <>
-        <ul className="list-inside space-y-1">
-          <li className="text-nowrap">Tôn trọng – Chia sẻ – Minh bạch là ba giá trị cốt lõi.</li>
-          <li>
-            Không ai bị bỏ lại phía sau: thành công của bạn cũng là niềm vui của cộng đồng.
-          </li>
-          <li>Đây không phải cuộc đua, mà là hành trình trưởng thành cùng nhau.</li>
-        </ul>
-      </>
-    ),
-  }
-];
+import { useTranslations } from 'next-intl';
 
 const IntroductionList = () => {
+  const t = useTranslations('introduction');
+
+  const dataIntro = [
+    {
+      icon: RocketIcon,
+      title: t('vision.title'),
+      des: (
+        <p>
+          {t('vision.description')}
+        </p>
+      ),
+    },
+    {
+      icon: HeartLockIcon,
+      title: t('mission.title'),
+      des: (
+        <ul className="list-inside space-y-1">
+          <li>{t('mission.description1')}</li>
+          <li>{t('mission.description2')}</li>
+          <li>{t('mission.description3')}</li>
+        </ul>
+      ),
+    },
+    {
+      icon: GraphUpIcon,
+      title: t('coreValues.title'),
+      des: (
+        <>
+          <p>{t('coreValues.peace')}</p>
+          <p>{t('coreValues.spread')}</p>
+          <p>{t('coreValues.sustainable')}</p>
+        </>
+      ),
+    },
+    {
+      icon: GamePadIcon,
+      title: t('howToJoin.title'),
+      des: (
+        <>
+          <ol className="list-inside space-y-1">
+            <li>{t('howToJoin.step1')}</li>
+            <li>{t('howToJoin.step2')}</li>
+            <li>
+              {t('howToJoin.step3')}
+              <ul className="list-inside space-y-1">
+                <li>{t('howToJoin.step3a')}</li>
+                <li>{t('howToJoin.step3b')}</li>
+                <li>{t('howToJoin.step3c')}</li>
+              </ul>
+            </li>
+            <li>
+              {t('howToJoin.step4')}
+            </li>
+          </ol>
+        </>
+      ),
+    },
+    {
+      icon: HammerIcon,
+      title: t('rules.title'),
+      des: (
+        <>
+          <ul className="list-inside space-y-1 ">
+            <li className="text-wrap">{t('rules.rule1')}</li>
+            <li>{t('rules.rule2')}</li>
+          </ul>
+        </>
+      ),
+    }
+  ];
+
   return (
     <div className="w-full flex flex-col items-center">
       {dataIntro.map((item) => {

@@ -4,12 +4,17 @@ import { ApiException } from '@/app/http/apiRequest';
 import { goldMiningRequest } from '@/app/http/requests/goldMining';
 import ResultController from '@/components/gold-mining/result/ResultController';
 import LoadingDots from '@/libs/shared/icons/LoadingDots';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 const ResultMiningGold = () => {
+  const t = useTranslations('error');
+  const tGold = useTranslations('goldMining');
   const score = (typeof window !== 'undefined' && localStorage.getItem('goldMiningScore')) || '';
+
+  const locale = useLocale() as 'en' | 'zh' | 'vi';
 
   const inspirationNumber = (typeof window !== 'undefined' && localStorage.getItem('inspiration')) || '';
   const [data, setData] = useState<string | undefined>(undefined);
@@ -23,13 +28,13 @@ const ResultMiningGold = () => {
           goldMiningRequest.GoldMiningMessage(Number(inspirationNumber)),
           getCookie('sessionId'),
         ]);
-        setData(res?.content);
+        setData(res?.content[locale]);
         goldMiningRequest.GoldMiningResult(sessionId || '', Number(score) || 0);
       } catch (error) {
         if (error instanceof ApiException) {
           toast.error(error.message);
         } else {
-          toast.error('Đã có lỗi xảy ra, vui lòng thử lại sau.');
+          toast.error(t('tryAgainLater'));
         }
         console.warn(error);
       } finally {
@@ -37,16 +42,16 @@ const ResultMiningGold = () => {
       }
     };
     fetchInspiration();
-  }, [inspirationNumber, score]);
+  }, [inspirationNumber, locale, score, t, tGold]);
 
   return (
     <div className="bg-gold-mining-game min-h-screen flex flex-col items-center pt-40 px-4">
       <h1 className="text-shadow-custom text-[3.25rem] font-[860]">{score}</h1>
       <div className="flex items-center space-x-2">
-        <Image className="w-[1.5rem] h-[1.75rem] ms-3" src="/assets/badge-medal.png" width={100} height={100} alt="badge medal" />
-        <p className="text-shadow-custom text-[1rem] font-[700]">
+        <Image className="w-6 h-7 ms-3" src="/assets/badge-medal.png" width={100} height={100} alt="badge medal" />
+        <p className="text-shadow-custom text-[1rem] font-bold">
           {' '}
-          số điểm nhận được
+          {tGold('pointsReceived')}
         </p>
       </div>
       <Image width="500" height="500" className="w-[200px] h-[130px]" alt="logo" src="/assets/logo-9x9.png" />
@@ -54,11 +59,11 @@ const ResultMiningGold = () => {
         isLoading ? (
           <div className="flex flex-col items-center mt-10">
             <LoadingDots />
-            <p className="text-shadow-custom text-[1rem] font-[700] mt-4">Đang tải thông điệp...</p>
+            <p className="text-shadow-custom text-[1rem] font-bold mt-4">{tGold('loadingMessage')}</p>
           </div>
         ) : (
           data && (
-            <p className="text-shadow-custom text-[1rem] font-[700] mt-4 text-center">
+            <p className="text-shadow-custom text-[1rem] font-bold mt-4 text-center">
               {data}
             </p>
           )

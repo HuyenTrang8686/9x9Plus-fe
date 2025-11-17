@@ -4,6 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ChevronDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface CustomCalendarProps {
@@ -14,27 +15,28 @@ interface CustomCalendarProps {
 }
 
 export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: CustomCalendarProps) {
+  const t = useTranslations('common');
   const [currentMonth, setCurrentMonth] = useState(selected?.getMonth() || new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(selected?.getFullYear() || new Date().getFullYear());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(selected);
 
   const months = [
-    'Tháng 1',
-    'Tháng 2',
-    'Tháng 3',
-    'Tháng 4',
-    'Tháng 5',
-    'Tháng 6',
-    'Tháng 7',
-    'Tháng 8',
-    'Tháng 9',
-    'Tháng 10',
-    'Tháng 11',
-    'Tháng 12',
+    t('month1'),
+    t('month2'),
+    t('month3'),
+    t('month4'),
+    t('month5'),
+    t('month6'),
+    t('month7'),
+    t('month8'),
+    t('month9'),
+    t('month10'),
+    t('month11'),
+    t('month12'),
   ];
 
   const years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i);
-  const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  const daysOfWeek = [t('daySu'), t('dayMo'), t('dayTu'), t('dayWe'), t('dayTh'), t('dayFr'), t('daySa')];
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
@@ -155,9 +157,9 @@ export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: Cust
               key={index}
               onClick={() => handleDateClick(dayObj.date)}
               className={`
-                h-10 w-10 text-sm text-white rounded-lg transition-colors hover:bg-gray-100 hover:text-black w-14
+                h-10 w-10 text-sm text-white rounded-lg transition-colors hover:bg-gray-100 hover:text-black
                 ${dayObj.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'}
-                ${isDateSelected(dayObj.date) ? 'button-calendar  text-white' : ''}
+                ${isDateSelected(dayObj.date) ? 'button-calendar text-white' : ''}
               `}
             >
               {dayObj.day}
@@ -173,14 +175,14 @@ export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: Cust
           onClick={onCancel}
           className="px-6 py-2 border border-gray-300  bg-white rounded-lg text-gray-700 hover:bg-gray-50"
         >
-          Hủy bỏ
+          {t('cancel')}
         </Button>
         <Button
           onClick={handleConfirm}
           disabled={!selectedDate}
           className="px-6 py-2 button-calendar text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
         >
-          Xác nhận
+          {t('confirm')}
         </Button>
       </div>
     </div>

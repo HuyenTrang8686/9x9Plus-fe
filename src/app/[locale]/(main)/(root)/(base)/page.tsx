@@ -1,9 +1,12 @@
 import Loading from '@/app/[locale]/loading';
 import { Header } from '@/components/header-footer/Header';
 import BoxTable from '@/components/home/BoxTable';
+import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-const page = () => {
+const page = async () => {
+  const t = await getTranslations('home');
+
   return (
     <div className="bg-9x9 flex flex-col items-center h-[calc(100vh-30px)]">
       <Header />
@@ -11,9 +14,9 @@ const page = () => {
         9x9Plus
       </h1>
       <h2 className="text-shadow-custom text-[14px] font-[510] text-center">
-        Chặng Đường 9 Tầng Thăng Cấp - Bạn Đã Mở
+        {t('title')}
         <br />
-        Box Chưa ?
+        {t('subtitle')}
       </h2>
       <Suspense fallback={<Loading />}>
         <BoxTable />
