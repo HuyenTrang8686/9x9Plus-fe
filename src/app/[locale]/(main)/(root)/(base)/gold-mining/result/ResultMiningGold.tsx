@@ -4,7 +4,7 @@ import { ApiException } from '@/app/http/apiRequest';
 import { goldMiningRequest } from '@/app/http/requests/goldMining';
 import ResultController from '@/components/gold-mining/result/ResultController';
 import LoadingDots from '@/libs/shared/icons/LoadingDots';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -13,6 +13,8 @@ const ResultMiningGold = () => {
   const t = useTranslations('error');
   const tGold = useTranslations('goldMining');
   const score = (typeof window !== 'undefined' && localStorage.getItem('goldMiningScore')) || '';
+
+  const locale = useLocale() as 'en' | 'zh' | 'vi';
 
   const inspirationNumber = (typeof window !== 'undefined' && localStorage.getItem('inspiration')) || '';
   const [data, setData] = useState<string | undefined>(undefined);
@@ -26,7 +28,7 @@ const ResultMiningGold = () => {
           goldMiningRequest.GoldMiningMessage(Number(inspirationNumber)),
           getCookie('sessionId'),
         ]);
-        setData(res?.content);
+        setData(res?.content[locale]);
         goldMiningRequest.GoldMiningResult(sessionId || '', Number(score) || 0);
       } catch (error) {
         if (error instanceof ApiException) {
@@ -40,7 +42,7 @@ const ResultMiningGold = () => {
       }
     };
     fetchInspiration();
-  }, [inspirationNumber, score, t, tGold]);
+  }, [inspirationNumber, locale, score, t, tGold]);
 
   return (
     <div className="bg-gold-mining-game min-h-screen flex flex-col items-center pt-40 px-4">
@@ -57,11 +59,11 @@ const ResultMiningGold = () => {
         isLoading ? (
           <div className="flex flex-col items-center mt-10">
             <LoadingDots />
-            <p className="text-shadow-custom text-[1rem] font-[700] mt-4">{tGold('loadingMessage')}</p>
+            <p className="text-shadow-custom text-[1rem] font-bold mt-4">{tGold('loadingMessage')}</p>
           </div>
         ) : (
           data && (
-            <p className="text-shadow-custom text-[1rem] font-[700] mt-4 text-center">
+            <p className="text-shadow-custom text-[1rem] font-bold mt-4 text-center">
               {data}
             </p>
           )

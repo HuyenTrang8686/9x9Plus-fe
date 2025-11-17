@@ -10,6 +10,7 @@ import UserConnection from '@/libs/shared/icons/UserConnection';
 import UserHeart from '@/libs/shared/icons/UserHeart';
 import { formatAddress, formatDate } from '@/libs/utils';
 import type { BoxDetailRes } from '@/types/box';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 type Props = {
@@ -18,21 +19,22 @@ type Props = {
 };
 
 const BoxCardDetail = ({ boxSlug, dataBoxDetail }: Props) => {
+  const t = useTranslations('box');
   const data = [
-    { icon: <UserHeart />, label: 'Tổng kết nối hành trình:', value: `${dataBoxDetail.totalUserSystem}` },
-    { icon: <HeartUnlockIcon />, label: 'Hành trình mở khóa:', value: `${dataBoxDetail.boxNumber}/9` },
+    { icon: <UserHeart />, label: t('totalConnection'), value: `${dataBoxDetail.totalUserSystem}` },
+    { icon: <HeartUnlockIcon />, label: t('journeyUnlock'), value: `${dataBoxDetail.boxNumber}/9` },
   ];
 
   const details = [
-    { id: 'userHeart', icon: <UserHeart />, label: 'Người kết nối:', value: `${formatAddress(dataBoxDetail.invitedBy || '', 8)}` },
+    { id: 'userHeart', icon: <UserHeart />, label: t('connectedBy'), value: `${formatAddress(dataBoxDetail.invitedBy || '', 8)}` },
     { id: 'heartUnlock', icon: <HeartUnlockIcon />, label: 'Box:', value: `${dataBoxDetail.boxNumber}/9` },
-    { id: 'calendar', icon: <CalendarColorIcon />, label: 'Tham gia:', value: `${formatDate(new Date(dataBoxDetail.openTime || ''))}` },
-    { id: 'handMoney', icon: <HandMoney2 />, label: 'Tổng giá trị trải nghiệm:', value: `${26 * (dataBoxDetail.boxNumber || 0)}/234` },
-    { id: 'userConnection', icon: <UserConnection />, label: 'Kết nối lan tỏa:', value: `${dataBoxDetail.invitedCount}` },
-    { id: 'moneyMessage', icon: <MoneyMessageIcon />, label: 'Điểm thưởng tri ân:', value: `${dataBoxDetail.directedAmount}` },
-    { id: 'moneySuitcase', icon: <MoneySuitcaseIcon />, label: 'Cộng hưởng lan tỏa:', value: `${dataBoxDetail.distributedAmount}` },
-    { id: 'moneyWallet', icon: <MoneyWalletIcon />, label: 'Cộng hưởng bền vững:', value: `${dataBoxDetail.referralChainAmount.toFixed(1)}` },
-    { id: 'shield', icon: <ShieldIcon />, label: 'Giá trị tích lũy:', value: `${dataBoxDetail.receivedTotal}` },
+    { id: 'calendar', icon: <CalendarColorIcon />, label: t('joined'), value: `${formatDate(new Date(dataBoxDetail.openTime || ''))}` },
+    { id: 'handMoney', icon: <HandMoney2 />, label: t('totalExperienceValue'), value: `${26 * (dataBoxDetail.boxNumber || 0)}/234` },
+    { id: 'userConnection', icon: <UserConnection />, label: t('spreadingConnection'), value: `${dataBoxDetail.invitedCount}` },
+    { id: 'moneyMessage', icon: <MoneyMessageIcon />, label: t('gratitudePoints'), value: `${dataBoxDetail.directedAmount}` },
+    { id: 'moneySuitcase', icon: <MoneySuitcaseIcon />, label: t('spreadingResonance'), value: `${dataBoxDetail.distributedAmount}` },
+    { id: 'moneyWallet', icon: <MoneyWalletIcon />, label: t('sustainableResonance'), value: `${dataBoxDetail.referralChainAmount.toFixed(1)}` },
+    { id: 'shield', icon: <ShieldIcon />, label: t('accumulatedValue'), value: `${dataBoxDetail.receivedTotal}` },
   ];
 
   return (

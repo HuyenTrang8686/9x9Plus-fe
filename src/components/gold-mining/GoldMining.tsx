@@ -12,12 +12,14 @@ import UnknowAvatarIcon from '@/libs/shared/icons/UnknowAvatar';
 import { formatAddress, formatMsToCountdown } from '@/libs/utils';
 import type { GoldMiningRestTimesResponse } from '@/types/game';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'nextjs-toploader/app';
 
 import { useEffect, useState } from 'react';
 
 const GoldMining = () => {
+  const t = useTranslations('goldMining');
   const [isDisplayQuestion, setIsDisplayQuestion] = useState(false);
   const [dataRestTimes, setDataRestTimes] = useState<GoldMiningRestTimesResponse>({
     restTimes: 0,
@@ -89,7 +91,7 @@ const GoldMining = () => {
             <>
               <GamePad2 />
               <span className="-translate-x-2">
-                Chơi game
+                {t('playGame')}
                 {' '}
                 {dataRestTimes.restTimes}
                 /
@@ -98,7 +100,7 @@ const GoldMining = () => {
             </>
           ) : (
             <span className="text-shadow-cusstom font-[590] text-[0.8125rem]">
-              Chờ tới lần chơi sau
+              {t('waitForNextTurn')}
               {' '}
               {formatMsToCountdown(dataRestTimes.timeRestore)}
             </span>
@@ -117,7 +119,7 @@ const GoldMining = () => {
         <div className="question-card mt-[1rem] z-10 max-w-[360px] w-full">
           <QuestionCircleIcon className="w-30" />
           <p className="text-shadow-custom text-[0.875rem] font-[510]">
-            Mỗi người bạn mời sẽ giúp bạn mở thêm 1 cánh cửa khám phá bản thân. Càng mời nhiều, cơ hội nhận hộp quà lan tỏa càng lớn.
+            {t('inviteFriendHelp')}
           </p>
         </div>
       )}

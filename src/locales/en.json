@@ -16,7 +16,29 @@
     "connectionJourney": "Connection Journey",
     "journeySpreadMap": "Journey Spread Map",
     "dataNotFound": "Data not found",
-    "tryAgainLater": "Please try again later."
+    "tryAgainLater": "Please try again later.",
+    "goBack": "Go Back",
+    "seeMore": "See More",
+    "share": "Share",
+    "month1": "January",
+    "month2": "February",
+    "month3": "March",
+    "month4": "April",
+    "month5": "May",
+    "month6": "June",
+    "month7": "July",
+    "month8": "August",
+    "month9": "September",
+    "month10": "October",
+    "month11": "November",
+    "month12": "December",
+    "daySu": "Su",
+    "dayMo": "Mo",
+    "dayTu": "Tu",
+    "dayWe": "We",
+    "dayTh": "Th",
+    "dayFr": "Fr",
+    "daySa": "Sa"
   },
   "navigation": {
     "home": "Home",
@@ -32,9 +54,12 @@
   "auth": {
     "connectWallet": "CONNECT WALLET",
     "connectWalletSuccess": "Wallet connected successfully!",
-    "connectWalletFailed": "Failed to connect wallet, please try again later!",
+    "connectWalletFailed": "Wallet connection failed, please try again later!",
     "installWallet": "Please install wallet",
-    "connectWalletRequired": "Please connect wallet"
+    "connectWalletRequired": "Please connect wallet",
+    "loginTitle": "Connect to start your journey",
+    "invitedBy": "Invited by",
+    "metaDescription": "THE JOURNEY OF SPREADING VALUE BEGINS HERE"
   },
   "welcome": {
     "title": "THE TREASURE WITHIN YOU",
@@ -59,10 +84,17 @@
       "description": "Spread Value. When you find the treasure within yourself, you'll become a guiding light for others, resonating together to build a strong 9x9Plus community."
     },
     "commitmentTitle": "Journey Commitment",
-    "commitment1": "This is not a financial game, but a journey of inner discovery and growth.",
+    "commitment1": "This is not a financial game, but a journey of inner exploration and growth.",
+    "commitment2": "Each step you take will deepen your confidence, wisdom, and ability to spread love.",
+    "commitment3": "We accompany you like a friend, a community – to open priceless treasure boxes together.",
+    "footerText": "Start your journey to open the Treasure Within You today",
     "startJourney": "START YOUR JOURNEY NOW"
   },
   "introduction": {
+    "pageTitle": "JOURNEY HANDBOOK",
+    "footerText": "The 9X9PLUS HANDBOOK is a companion notebook so that every time you open it, you find faith, direction and strength for the next step.",
+    "footerSubtitle": "Remember: The greatest treasure is always within you.",
+    "unlockNow": "Unlock Now",
     "vision": {
       "title": "VISION",
       "description": "Every person carries a hidden treasure within. 9x9Plus was born to help you discover, nurture, and spread those values – creating a community where everyone can shine through wisdom, love, and connection."
@@ -96,6 +128,13 @@
     }
   },
   "profile": {
+    "pageTitle": "Profile",
+    "prosperityPoints": "Prosperity Points",
+    "journey": "Journey",
+    "days": "days",
+    "yourCommunity": "Your Community",
+    "members": "members",
+    "yourJourney": "YOUR JOURNEY",
     "shareJourney": "Share your journey",
     "contact": "Contact",
     "walletCopied": "Wallet address copied",
@@ -122,7 +161,24 @@
     "needToOpenBox": "You need to open Box {boxNumber} first",
     "goBack": "Go Back",
     "processing": "Processing...",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "boxNotExist": "Box does not exist",
+    "totalConnection": "Total journey connections:",
+    "journeyUnlock": "Journey unlocked:",
+    "connectedBy": "Connected by:",
+    "joined": "Joined:",
+    "totalExperienceValue": "Total experience value:",
+    "spreadingConnection": "Spreading connection:",
+    "gratitudePoints": "Gratitude reward points:",
+    "spreadingResonance": "Spreading resonance:",
+    "sustainableResonance": "Sustainable resonance:",
+    "accumulatedValue": "Accumulated value:",
+    "journeyLog": "Journey Log",
+    "unlockColumn": "Unlock",
+    "membersColumn": "Members",
+    "spreadingConnectionColumn": "Spreading Connection",
+    "spreadJourney": "Spread Journey",
+    "valueSpreadMap": "Value Spread Map"
   },
   "goldMining": {
     "title": "Treasure Hunt",
@@ -135,6 +191,10 @@
     "loadingMessage": "Loading message...",
     "clickToOpenBox": "Note: Tap the box to open your gift",
     "boxNotFound": "Secret box not found",
+    "playGame": "Play Game",
+    "waitForNextTurn": "Wait for next turn",
+    "inviteFriendHelp": "Each friend you invite will help you open an additional door to discover yourself. The more you invite, the greater the chance to receive spread gifts.",
+    "playAgain": "Play Again ({count}/9 left)",
     "blindBoxes": {
       "box1": {
         "title": "Mind Opening",
@@ -184,7 +244,6 @@
     },
     "boxTitle": "Box number",
     "errorOccurred": "An error occurred, please try again later.",
-    "playAgain": "Play Again",
     "returnHome": "Return Home"
   },
   "mission": {
@@ -244,16 +303,33 @@
     "male": "Male",
     "female": "Female",
     "other": "Other",
-    "calculate": "Analyze"
+    "calculate": "Analyze",
+    "missingParameters": "Missing name or birth date parameters.",
+    "discoverYourself": "Discover Yourself",
+    "understandYourself": "Understand yourself to live true to yourself",
+    "disclaimer": "Note: These are reference indicators and do not guarantee absolute accuracy.",
+    "message": "Message",
+    "number": "Number",
+    "messageForYou": "Message for you",
+    "destiny": "DESTINY",
+    "personalYear": "PERSONAL YEAR",
+    "personality": "PERSONALITY",
+    "character": "CHARACTER",
+    "soul": "SOUL"
   },
   "ranking": {
     "title": "Ranking",
-    "prosperityPoints": "Prosperity Points"
+    "prosperityPoints": "Prosperity Points",
+    "players": "players",
+    "totalPoints": "Total points received",
+    "me": "Me"
   },
   "wallet": {
     "connectToBNB": "Please connect to BNB network to use the app",
     "switchToBNB": "Switch Network to BNB",
-    "connectBNBNetwork": "Please connect to BNB network to use the app"
+    "connectBNBNetwork": "Please connect to BNB network to use the app",
+    "profile": "Profile",
+    "disconnect": "Disconnect"
   },
   "error": {
     "tryAgainLater": "Please try again later.",
@@ -261,26 +337,26 @@
   },
   "policyTerms": {
     "title": "COMMUNITY PRINCIPLES AND COMMITMENTS",
-    "section1Title": "General introduction: The <strong>9x9Plus</strong> project is a community connection platform based on transparency, goodwill sharing, and voluntariness. All \"unlock\" actions are considered acts of sowing value and connecting with the community, not financial investment or multi-level business.",
+    "section1Title": "General introduction: The 9x9Plus project is a community connection platform based on transparency, goodwill sharing, and voluntariness. All \"unlock\" actions are considered acts of sowing value and connecting with the community, not financial investment or multi-level business.",
     "section2Title": "Rights and obligations of participants",
     "section2Item1": "Free to decide to participate or not participate at any time.",
     "section2Item2": "Understand and agree with the principle: no profit commitment, no capital guarantee.",
     "section2Item3": "Access to transparent information about \"unlock\" sessions, seeding data and related systems.",
     "section2Item4": "Each contribution is voluntary and has clearly understood that it is not for profit purposes.",
     "section3Title": "Participant's commitment",
-    "section3Item1": "I have read, understood and agree with the <strong>9x9Plus</strong>",
+    "section3Item1": "I have read, understood and agree with the 9x9Plus model",
     "section3Item2": "I do not expect or anticipate financial profit.",
     "section3Item3": "Each contribution I make is a voluntary choice.",
     "section3Item4": "I will not complain or request a refund of any contribution made.",
-    "section4Title": "Responsibilities and commitments of <strong>9x9Plus</strong>",
+    "section4Title": "Responsibilities and commitments of 9x9Plus",
     "section4Item1": "Provide complete transparent and public information about activities.",
     "section4Item2": "Clearly communicate that this is not a multi-level financial investment activity.",
     "section4Item3": "Comply with Vietnamese law and commit to cooperate with authorities when requested.",
     "section5Title": "Violation handling mechanism",
     "section5Item1": "All cases of fraud, exploitation, false solicitation will be handled according to the severity of the violation (Warning, suspension or deletion of access rights).",
-    "section6Title": "Changes and adjustments: <strong>9x9Plus</strong> has the right to change terms when there are system updates or operational process changes. All changes will be notified in advance on the website/application interface.",
-    "agreement": "By continuing to use <strong>9x9Plus</strong>, you have agreed and complied with the above terms",
-    "acceptButton": "I have read and understand the 9x9Plus model"
+    "section6Title": "Changes and adjustments: 9x9Plus has the right to change terms when there are system updates or operational process changes. All changes will be notified in advance on the website/application interface.",
+    "agreement": "By continuing to use 9x9Plus, you have agreed and complied with the above terms",
+    "acceptButton": "I have read and understand"
   },
   "missionInfo": {
     "pageTitle": "9x9Plus",

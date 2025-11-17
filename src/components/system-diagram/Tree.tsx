@@ -153,7 +153,7 @@ export default function Tree() {
         id: 'root-previous',
         level: 1,
         originalAddress: address,
-        address: `Trở lại`,
+        address: t('goBack'),
         type: 'previous',
         paginationData: {
           currentPage,
@@ -183,7 +183,7 @@ export default function Tree() {
         id: 'root-more',
         level: 1,
         originalAddress: address,
-        address: `Xem thêm`,
+        address: t('seeMore'),
         type: 'more',
         paginationData: {
           currentPage,
@@ -202,7 +202,7 @@ export default function Tree() {
         id: `root-share-${i}`,
         level: 1,
         originalAddress: address,
-        address: 'Chia sẻ',
+        address: t('share'),
         type: 'share',
       });
     }
@@ -286,7 +286,7 @@ export default function Tree() {
         id: `${parentId}-previous-${currentPage}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: `Trở lại`,
+        address: t('goBack'),
         type: 'previous',
         paginationData: {
           currentPage,
@@ -316,7 +316,7 @@ export default function Tree() {
         id: `${parentId}-more-${currentPage}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: `Xem thêm`,
+        address: t('seeMore'),
         type: 'more',
         paginationData: {
           currentPage,
@@ -335,7 +335,7 @@ export default function Tree() {
         id: `${parentId}-share-${i}`,
         level: parentLevel + 1,
         originalAddress: parentAddress,
-        address: 'Chia sẻ',
+        address: t('share'),
         type: 'share',
       });
     }
@@ -542,7 +542,7 @@ export default function Tree() {
     return (
       <div key={node.id} className="relative">
         <div className="flex items-center gap-3 mb-3 w-[250px]" style={{ marginLeft: `${marginLeft}px` }}>
-          <span className="text-white text-sm font-medium min-w-[1px] w-[15px]">
+          <span className="text-white text-sm font-medium min-w-px w-[15px]">
             Lv.
             {node.level}
           </span>
@@ -555,7 +555,7 @@ export default function Tree() {
             onClick={() => handleNodeAction(node)}
           >
             {renderIcon(node.type)}
-            <span className="text-white text-[0.625rem] font-[700] -translate-x-4">{node.address}</span>
+            <span className="text-white text-[0.625rem] font-bold -translate-x-4">{node.address}</span>
           </Button>
 
           {node.level < 9 && node.type === 'folder' && (

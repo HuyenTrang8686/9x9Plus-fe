@@ -6,27 +6,29 @@ import DiamonIcon from '@/libs/shared/icons/Diamon';
 import GamePad4 from '@/libs/shared/icons/GamePad4';
 import UserConnection from '@/libs/shared/icons/UserConnection';
 import { differenceInDays } from 'date-fns';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
 const Profile = async () => {
+  const t = await getTranslations('profile');
   const userRes = await userRequest.userGetMe();
 
   const userData = [
     {
       id: 1,
-      title: `Điểm Thịnh Vượng: ${userRes?.score || 0}`,
+      title: `${t('prosperityPoints')}: ${userRes?.score || 0}`,
       icon: GamePad4,
     },
     {
       id: 2,
-      title: `Hành trình: ${differenceInDays(new Date(), new Date(userRes?.createdAt || new Date())) || 0}  ngày`,
+      title: `${t('journey')}: ${differenceInDays(new Date(), new Date(userRes?.createdAt || new Date())) || 0}  ${t('days')}`,
       icon: DiamonIcon,
     },
     {
       id: 3,
-      title: `Cộng đồng của bạn: ${userRes?.amount}  thành viên`,
+      title: `${t('yourCommunity')}: ${userRes?.amount}  ${t('members')}`,
       icon: UserConnection,
     },
     // {
@@ -55,7 +57,7 @@ const Profile = async () => {
       <div className="bg-card-info  relative">
         <div className="flex justify-center items-center -translate-x-5 h-12">
           <Arrow3Icon className=" translate-x-5 translate-y-1" />
-          <p className="text-shadow-custom font-[860] text-[1.125rem] text-center translate-x-4 bor">HÀNH TRÌNH CỦA BẠN</p>
+          <p className="text-shadow-custom font-[860] text-[1.125rem] text-center translate-x-4 bor">{t('yourJourney')}</p>
         </div>
         {
           userData.map(item => (

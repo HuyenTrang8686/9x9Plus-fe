@@ -14,9 +14,31 @@
     "edit": "Chỉnh sửa",
     "enterWalletAddress": "Nhập địa chỉ ví",
     "connectionJourney": "Hành trình kết nối",
-    "journeySpreadMap": "Bản đồ lan tỏa hành trình",
+    "journeySpreadMap": "Bản đồ lan toả hành trình",
     "dataNotFound": "Không tìm thấy dữ liệu",
-    "tryAgainLater": "Vui lòng thử lại sau."
+    "tryAgainLater": "Vui lòng thử lại sau.",
+    "goBack": "Trở lại",
+    "seeMore": "Xem thêm",
+    "share": "Chia sẻ",
+    "month1": "Tháng 1",
+    "month2": "Tháng 2",
+    "month3": "Tháng 3",
+    "month4": "Tháng 4",
+    "month5": "Tháng 5",
+    "month6": "Tháng 6",
+    "month7": "Tháng 7",
+    "month8": "Tháng 8",
+    "month9": "Tháng 9",
+    "month10": "Tháng 10",
+    "month11": "Tháng 11",
+    "month12": "Tháng 12",
+    "daySu": "CN",
+    "dayMo": "T2",
+    "dayTu": "T3",
+    "dayWe": "T4",
+    "dayTh": "T5",
+    "dayFr": "T6",
+    "daySa": "T7"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -34,7 +56,10 @@
     "connectWalletSuccess": "Kết nối ví thành công!",
     "connectWalletFailed": "Kết nối ví thất bại, vui lòng thử lại sau!",
     "installWallet": "Vui lòng cài đặt ví",
-    "connectWalletRequired": "Vui lòng kết nối ví"
+    "connectWalletRequired": "Vui lòng kết nối ví",
+    "loginTitle": "Kết nối để bắt đầu hành trình",
+    "invitedBy": "Người mời",
+    "metaDescription": "HÀNH TRÌNH LAN TOẢ GIÁ TRỊ BẮT ĐẦU TỪ ĐÂY"
   },
   "welcome": {
     "title": "KHO BÁU BÊN TRONG BẠN",
@@ -60,9 +85,16 @@
     },
     "commitmentTitle": "Cam kết hành trình",
     "commitment1": "Đây không phải một trò chơi tài chính, mà là hành trình khám phá và trưởng thành nội tâm.",
+    "commitment2": "Mỗi bước đi bạn thực hiện sẽ khắc sâu thêm sự tự tin, trí tuệ và khả năng lan tỏa yêu thương.",
+    "commitment3": "Chúng tôi đồng hành như một người bạn, một cộng đồng – để cùng nhau mở những chiếc hộp kho báu vô giá.",
+    "footerText": "Bắt đầu hành trình mở Kho báu bên trong bạn ngay hôm nay",
     "startJourney": "BẮT ĐẦU HÀNH TRÌNH CỦA BẠN NGAY"
   },
   "introduction": {
+    "pageTitle": "CẨM NANG HÀNH TRÌNH",
+    "footerText": "CẨM NANG 9X9PLUS là chiếc sổ tay đồng hành để mỗi khi mở ra, bạn tìm thấy niềm tin, định hướng và sức mạnh cho bước đi tiếp theo.",
+    "footerSubtitle": "Hãy nhớ rằng: Kho báu lớn nhất luôn nằm trong chính bạn.",
+    "unlockNow": "Mở khóa ngay",
     "vision": {
       "title": "TẦM NHÌN",
       "description": "Mỗi con người đều mang trong mình một kho báu tiềm ẩn. 9x9Plus ra đời để cùng bạn khám phá, nuôi dưỡng và lan tỏa những giá trị đó – kiến tạo một cộng đồng nơi ai cũng được tỏa sáng bằng trí tuệ, yêu thương và sự kết nối."
@@ -96,6 +128,13 @@
     }
   },
   "profile": {
+    "pageTitle": "Hồ sơ",
+    "prosperityPoints": "Điểm Thịnh Vượng",
+    "journey": "Hành trình",
+    "days": "ngày",
+    "yourCommunity": "Cộng đồng của bạn",
+    "members": "thành viên",
+    "yourJourney": "HÀNH TRÌNH CỦA BẠN",
     "shareJourney": "Chia sẻ hành trình của bạn",
     "contact": "Liên hệ",
     "walletCopied": "Đã sao chép địa chỉ ví",
@@ -122,7 +161,24 @@
     "needToOpenBox": "Bạn cần mở Box {boxNumber} trước",
     "goBack": "Quay lại",
     "processing": "Đang xử lý...",
-    "confirm": "Xác nhận"
+    "confirm": "Xác nhận",
+    "boxNotExist": "Hộp không tồn tại",
+    "totalConnection": "Tổng kết nối hành trình:",
+    "journeyUnlock": "Hành trình mở khóa:",
+    "connectedBy": "Người kết nối:",
+    "joined": "Tham gia:",
+    "totalExperienceValue": "Tổng giá trị trải nghiệm:",
+    "spreadingConnection": "Kết nối lan toả:",
+    "gratitudePoints": "Điểm thưởng tri ân:",
+    "spreadingResonance": "Cộng hưởng lan toả:",
+    "sustainableResonance": "Cộng hưởng bền vững:",
+    "accumulatedValue": "Giá trị tích lũy:",
+    "journeyLog": "Nhật ký hành trình",
+    "unlockColumn": "Mở khóa",
+    "membersColumn": "Thành viên",
+    "spreadingConnectionColumn": "Kết nối lan toả",
+    "spreadJourney": "Lan toả hành trình",
+    "valueSpreadMap": "Bản đồ lan toả giá trị"
   },
   "goldMining": {
     "title": "Đào kho báu",
@@ -135,6 +191,10 @@
     "loadingMessage": "Đang tải thông điệp...",
     "clickToOpenBox": "Lưu ý: Ấn vào hộp để mở quà của bạn",
     "boxNotFound": "Không tìm thấy hộp bí mật",
+    "playGame": "Chơi game",
+    "waitForNextTurn": "Chờ tới lần chơi sau",
+    "inviteFriendHelp": "Mỗi người bạn mời sẽ giúp bạn mở thêm 1 cánh cửa khám phá bản thân. Càng mời nhiều, cơ hội nhận hộp quà lan toả càng lớn.",
+    "playAgain": "Chơi lại (còn {count}/9)",
     "blindBoxes": {
       "box1": {
         "title": "Khai mở ý trí",
@@ -184,7 +244,6 @@
     },
     "boxTitle": "Hộp số",
     "errorOccurred": "Đã có lỗi xảy ra, vui lòng thử lại sau.",
-    "playAgain": "Chơi lại",
     "returnHome": "Về trang chủ"
   },
   "mission": {
@@ -244,16 +303,33 @@
     "male": "Nam",
     "female": "Nữ",
     "other": "Khác",
-    "calculate": "Phân tích"
+    "calculate": "Phân tích",
+    "missingParameters": "Thiếu tham số họ tên hoặc ngày sinh.",
+    "discoverYourself": "Khám phá bản thân",
+    "understandYourself": "Hiểu bản thân để sống đúng với bản thân",
+    "disclaimer": "Lưu ý: Đây là những chỉ số mang tính chất tham khảo, không đảm bảo về tính chính xác tuyệt đối.",
+    "message": "Thông điệp",
+    "number": "Số",
+    "messageForYou": "Thông điệp dành cho bạn",
+    "destiny": "SỨ MỆNH",
+    "personalYear": "NĂM CÁ NHÂN",
+    "personality": "TÍNH CÁCH",
+    "character": "NHÂN CÁCH",
+    "soul": "LINH HỒN"
   },
   "ranking": {
     "title": "Bảng xếp hạng",
-    "prosperityPoints": "Điểm hạt thịnh vượng"
+    "prosperityPoints": "Điểm hạt thịnh vượng",
+    "players": "người chơi",
+    "totalPoints": "Tổng số điểm nhận được",
+    "me": "Tôi"
   },
   "wallet": {
     "connectToBNB": "Vui lòng kết nối mạng BNB để sử dụng app",
     "switchToBNB": "Đổi mạng sang BNB",
-    "connectBNBNetwork": "Vui lòng kết nối mạng BNB để sử dụng app"
+    "connectBNBNetwork": "Vui lòng kết nối mạng BNB để sử dụng app",
+    "profile": "Hồ sơ",
+    "disconnect": "Ngắt kết nối"
   },
   "error": {
     "tryAgainLater": "Vui lòng thử lại sau.",
@@ -261,25 +337,25 @@
   },
   "policyTerms": {
     "title": "NGUYÊN TẮC VÀ CAM KẾT CỘNG ĐỒNG",
-    "section1Title": "Giới thiệu chung dự án <strong>9x9Plus</strong> là một nền tảng kết nối cộng đồng dựa trên nguyên tắc minh bạch, chia sẻ thiện chí và tự nguyện. Mọi hành động \"mở khoá\" được xem là hành động gieo hạt giá trị và kết nối với cộng đồng, không mang tính chất đầu tư tài chính hay kinh doanh đa cấp.",
+    "section1Title": "Giới thiệu chung dự án 9x9Plus là một nền tảng kết nối cộng đồng dựa trên nguyên tắc minh bạch, chia sẻ thiện chí và tự nguyện. Mọi hành động \"mở khoá\" được xem là hành động gieo hạt giá trị và kết nối với cộng đồng, không mang tính chất đầu tư tài chính hay kinh doanh đa cấp.",
     "section2Title": "Quyền lợi và nghĩa vụ của người tham gia",
     "section2Item1": "Được quyết định tự nguyện tham gia hay không tham gia vào bất kỳ thời điểm nào.",
     "section2Item2": "Hiểu rõ và đồng ý với nguyên tắc: không cam kết lợi nhuận, không bảo đảm hoàn vốn.",
     "section2Item3": "Được truy cập thông tin minh bạch về các lần \"mở khoá\", số liệu gieo hạt và hệ thống liên quan.",
     "section2Item4": "Đóng góp mỗi khoản là tự nguyện và đã hiểu rõ không nhằm mục đích sinh lợi.",
     "section3Title": "Cam kết của người tham gia",
-    "section3Item1": "Tôi đã đọc, hiểu và đồng ý với mô hình của <strong>9x9Plus</strong>",
+    "section3Item1": "Tôi đã đọc, hiểu và đồng ý với mô hình của 9x9Plus",
     "section3Item2": "Tôi không mong đợi hoặc kỳ vọng lợi nhuận tài chính.",
     "section3Item3": "Tôi đóng góp mỗi khoản là sự lựa chọn tự nguyện.",
     "section3Item4": "Tôi sẽ không khiếu nại hoặc yêu cầu trả lại bất kỳ khoản nào đã đóng góp.",
-    "section4Title": "Trách nhiệm và cam kết của <strong>9x9Plus</strong>",
+    "section4Title": "Trách nhiệm và cam kết của 9x9Plus",
     "section4Item1": "Cung cấp đầy đủ thông tin minh bạch và công khai về hoạt động.",
     "section4Item2": "Tuyên truyền rõ ràng đây không phải hoạt động đầu tư tài chính đa cấp.",
     "section4Item3": "Tuân thủ pháp luật Việt Nam và cam kết hợp tác với cơ quan chức năng khi có yêu cầu.",
     "section5Title": "Cơ chế xử lý vi phạm",
     "section5Item1": "Mọi trường hợp gian lận, lợi dụng, lôi kéo sai sự thật sẽ bị xử lý tuỳ theo mức độ vi phạm (Cảnh báo, đình chỉ hoặc xoá quyền truy cập).",
-    "section6Title": "Thay đổi và điểu chỉnh <strong>9x9Plus</strong> có quyền thay đổi điều khoản khi có cập nhật hệ thống hoặc thay đổi quy trình hoạt động. Mọi thay đổi sẽ được thông báo trước trên giao diện website/ứng dụng.",
-    "agreement": "Bằng việc tiếp tục sử dụng <strong>9x9Plus</strong>, bạn đã đồng ý và tuân thủ các điều khoản nêu trên",
+    "section6Title": "Thay đổi và điểu chỉnh: 9x9Plus có quyền thay đổi điều khoản khi có cập nhật hệ thống hoặc thay đổi quy trình hoạt động. Mọi thay đổi sẽ được thông báo trước trên giao diện website/ứng dụng.",
+    "agreement": "Bằng việc tiếp tục sử dụng 9x9Plus, bạn đã đồng ý và tuân thủ các điều khoản nêu trên",
     "acceptButton": "Tôi đã đọc và hiểu mô hình 9x9Plus"
   },
   "missionInfo": {

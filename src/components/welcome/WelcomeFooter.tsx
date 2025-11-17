@@ -13,7 +13,7 @@ const WelcomeFooter = ({ isKyc }: Props) => {
   return (
     <>
       <Link href={isKyc ? '/' : 'introduction'} prefetch>
-        <Button className="button-rounded py-[1rem]">
+        <Button className="button-rounded py-4">
           <span className="text-wrap">{t('startJourney')}</span>
         </Button>
       </Link>

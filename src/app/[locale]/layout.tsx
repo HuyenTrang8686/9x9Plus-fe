@@ -7,7 +7,7 @@ import '@/styles/global.css';
 import RootTemplate from '@/templates/RootTemplate';
 import type { Metadata, Viewport } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import NextTopLoader from 'nextjs-toploader';
 
@@ -17,46 +17,53 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://gasy-9x9-plus-fe.vercel.app/'), // Replace with your actual domain
-  icons: [
-    {
-      rel: 'apple-touch-icon',
-      url: '/apple-icon.png',
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '32x32',
-      url: '/icon0.svg',
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '16x16',
-      url: '/favicon.ico',
-    },
-    {
-      rel: 'icon',
-      url: '/favicon.ico',
-    },
-  ],
-  openGraph: {
-    title: '9x9 Plus',
-    description: 'HÀNH TRÌNH LAN TOẢ GIÁ TRỊ BẮT ĐẦU TỪ ĐÂY',
-    url: 'https://gasy-9x9-plus-fe.vercel.app/',
-    siteName: '9x9 Plus',
-    images: [
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'auth' });
+
+  return {
+    metadataBase: new URL('https://gasy-9x9-plus-fe.vercel.app/'), // Replace with your actual domain
+    icons: [
       {
+        rel: 'apple-touch-icon',
         url: '/apple-icon.png',
-        width: 1200,
-        height: 630,
-        alt: '9x9 Plus Logo',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        url: '/icon0.svg',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        url: '/favicon.ico',
+      },
+      {
+        rel: 'icon',
+        url: '/favicon.ico',
       },
     ],
-    type: 'website',
-  },
-};
+    openGraph: {
+      title: '9x9 Plus',
+      description: t('metaDescription'),
+      url: 'https://gasy-9x9-plus-fe.vercel.app/',
+      siteName: '9x9 Plus',
+      images: [
+        {
+          url: '/apple-icon.png',
+          width: 1200,
+          height: 630,
+          alt: '9x9 Plus Logo',
+        },
+      ],
+      type: 'website',
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));

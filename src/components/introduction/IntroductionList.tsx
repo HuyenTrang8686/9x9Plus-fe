@@ -72,8 +72,8 @@ const IntroductionList = () => {
       title: t('rules.title'),
       des: (
         <>
-          <ul className="list-inside space-y-1">
-            <li className="text-nowrap">{t('rules.rule1')}</li>
+          <ul className="list-inside space-y-1 ">
+            <li className="text-wrap">{t('rules.rule1')}</li>
             <li>{t('rules.rule2')}</li>
           </ul>
         </>

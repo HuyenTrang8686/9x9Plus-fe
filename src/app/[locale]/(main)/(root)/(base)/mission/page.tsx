@@ -161,7 +161,7 @@ const Page = () => {
       <h1 className="font-light text-xl text-blue-200 mb-2">{t('pageTitle')}</h1>
       <h2 className="font-semibold text-base mb-6 drop-shadow-lg">{t('title')}</h2>
 
-      <div className="w-full max-w-md h-[calc(100vh-180px)] overflow-y-auto">
+      <div className="w-full max-w-md h-[calc(100vh-150px)] overflow-y-auto">
         {isSuccess && data.map((item, index) => (
           <button
             type="button"
@@ -170,7 +170,7 @@ const Page = () => {
               to: item.to,
               isCompleted: item.isCompleted
             })}
-            className={`relative my-4 rounded-[0.75rem] p-4 flex border items-center gap-3 ${item.isCompleted ? 'border-[#52C41A] bg-[rgba(82,196,26,0.25)]' : 'border-[#68DAF2] bg-[rgba(0,39,102,0.25)]'}`}
+            className={`relative my-4 rounded-[0.75rem] p-4 flex border items-center w-full gap-3 ${item.isCompleted ? 'border-[#52C41A] bg-[rgba(82,196,26,0.25)]' : 'border-[#68DAF2] bg-[rgba(0,39,102,0.25)]'}`}
             key={index}
 
           >

@@ -21,22 +21,22 @@ export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: Cust
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(selected);
 
   const months = [
-    'Tháng 1',
-    'Tháng 2',
-    'Tháng 3',
-    'Tháng 4',
-    'Tháng 5',
-    'Tháng 6',
-    'Tháng 7',
-    'Tháng 8',
-    'Tháng 9',
-    'Tháng 10',
-    'Tháng 11',
-    'Tháng 12',
+    t('month1'),
+    t('month2'),
+    t('month3'),
+    t('month4'),
+    t('month5'),
+    t('month6'),
+    t('month7'),
+    t('month8'),
+    t('month9'),
+    t('month10'),
+    t('month11'),
+    t('month12'),
   ];
 
   const years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i);
-  const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  const daysOfWeek = [t('daySu'), t('dayMo'), t('dayTu'), t('dayWe'), t('dayTh'), t('dayFr'), t('daySa')];
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
@@ -157,9 +157,9 @@ export function CustomCalendar({ selected, onSelect, onCancel, onConfirm }: Cust
               key={index}
               onClick={() => handleDateClick(dayObj.date)}
               className={`
-                h-10 w-10 text-sm text-white rounded-lg transition-colors hover:bg-gray-100 hover:text-black w-14
+                h-10 w-10 text-sm text-white rounded-lg transition-colors hover:bg-gray-100 hover:text-black
                 ${dayObj.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'}
-                ${isDateSelected(dayObj.date) ? 'button-calendar  text-white' : ''}
+                ${isDateSelected(dayObj.date) ? 'button-calendar text-white' : ''}
               `}
             >
               {dayObj.day}

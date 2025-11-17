@@ -38,7 +38,7 @@ export function Footer() {
             className={`footer-items ${isActive ? '' : 'opacity-50'}`}
           >
             <Icon />
-            <span className="text-white font-[500] text-[0.5625rem]">
+            <span className="text-white font-medium text-[0.5625rem]">
               {item.title}
             </span>
           </Link>

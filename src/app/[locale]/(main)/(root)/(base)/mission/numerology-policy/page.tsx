@@ -150,18 +150,18 @@ async function getPersonalYearData(t: Awaited<ReturnType<typeof getTranslations<
       riskForecast: t('year8RiskForecast')
     },
     {
-      title: 'NĂM CÁ NHÂN 9 - KHÁC BIỆT ĐỂ TIÊN PHONG',
-      description: 'Nhận định vận hạn: Bạn là đại dương từ bi, để lại di sản với năng lượng nhân đạo và hoàn thiện. Năm Cá Nhân 9 là thời điểm để bạn kết thúc chu kỳ và phục vụ nhân loại.',
+      title: t('year9Title'),
+      description: t('year9Description'),
       doList: [
-        'Tham gia hoạt động từ thiện ý nghĩa.',
-        'Chữa lành mối quan hệ cũ.',
-        'Hoàn thành các dự án dang dở.',
-        'Cho đi với lòng biết ơn và tha thứ.'
+        t('year9Do1'),
+        t('year9Do2'),
+        t('year9Do3'),
+        t('year9Do4')
       ],
       avoidList: [
-        'Giữ lại oán giận hoặc hận thù.',
-        'Bám víu vào quá khứ không cần thiết.',
-        'Lãng phí năng lượng vào việc vô ích.'
+        t('year9Avoid1'),
+        t('year9Avoid2'),
+        t('year9Avoid3')
       ],
       positiveForecast: t('year9PositiveForecast'),
       riskForecast: t('year9RiskForecast')
@@ -290,7 +290,7 @@ const page = async () => {
             </p>
           </section>
           {/* Linh hồn */}
-          <section id="soul-urge" className="mb-8 bg-card-info max-w-[24.4375rem]">
+          <section id="soul-urge" className="mb-8 bg-card-info max-w-97.75">
             <h2 className="text-xl font-bold mb-2 text-shadow-custom">
               {
                 t('soulUrgeTitle')
@@ -475,7 +475,7 @@ const page = async () => {
             </p>
           </section>
           {/* Nhân cách */}
-          <section id="expression" className="mb-8 bg-card-info max-w-[24.4375rem]">
+          <section id="expression" className="mb-8 bg-card-info max-w-97.75">
             <h2 className="text-xl font-bold mb-2 text-shadow-custom">{t('expressionTitle')}</h2>
             <p className="text-shadow-custom mb-4">
               {t('expressionIntro')}
@@ -576,28 +576,28 @@ const page = async () => {
             <p className="text-shadow-custom font-normal text-[0.875rem] text-left mt-2 leading-relaxed">{item.description}</p>
 
             <div className="mt-3">
-              <p className="font-[590] text-[0.875rem] text-shadow-custom">Việc cần làm:</p>
+              <p className="font-[590] text-[0.875rem] text-shadow-custom">{t('doLabel')}</p>
               <ul className="list-disc list-inside ml-2 text-shadow-custom">
                 {item.doList.map((doItem, idx) => <li key={idx}>{doItem}</li>)}
               </ul>
             </div>
 
             <div className="mt-2">
-              <p className="font-[590] text-[0.875rem] text-shadow-custom">Việc cần tránh:</p>
+              <p className="font-[590] text-[0.875rem] text-shadow-custom">{t('avoidLabel')}</p>
               <ul className="list-disc list-inside ml-2 text-shadow-custom">
                 {item.avoidList.map((avoidItem, idx) => <li key={idx}>{avoidItem}</li>)}
               </ul>
             </div>
 
             <div className="mt-2">
-              <p className="font-[590] text-[0.875rem] text-shadow-custom">Dự báo tích cực:</p>
+              <p className="font-[590] text-[0.875rem] text-shadow-custom">{t('positiveForecastLabel')}</p>
               <ul className="list-disc list-inside ml-2 text-shadow-custom">
                 <li>{item.positiveForecast}</li>
               </ul>
             </div>
 
             <div className="mt-2">
-              <p className="font-[590] text-[0.875rem] text-shadow-custom">Nguy cơ cần tránh:</p>
+              <p className="font-[590] text-[0.875rem] text-shadow-custom">{t('riskForecastLabel')}</p>
               <ul className="list-disc list-inside ml-2 text-shadow-custom">
                 <li>{item.riskForecast}</li>
               </ul>

@@ -1,15 +1,15 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
-const ButtonMeaning = ({ baseUrl }: { baseUrl: string }) => {
-  const handleNavigation = (meaning: string) => {
-    window.location.href = `${baseUrl}&meaning=${meaning}`;
-  };
+const ButtonMeaning = ({ baseUrl }: Props) => {
+  const t = useTranslations('numerology');
   return (
-    <Button className="button-base w-full max-w-[343px] cursor-pointer z-20" onClick={() => handleNavigation('true')}>
-      Thông điệp dành cho bạn
-    </Button>
+    <Link href={`${baseUrl}&meaning=true`}>
+      <Button className="button-base !px-4">
+        {t('messageForYou')}
+      </Button>
+    </Link>
   );
-};
-
-export default ButtonMeaning;
+};export default ButtonMeaning;
