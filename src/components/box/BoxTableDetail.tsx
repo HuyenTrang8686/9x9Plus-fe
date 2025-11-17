@@ -1,12 +1,12 @@
 'use client';
 
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
 } from '@/components/ui/table';
 import type { BoxDetailRes } from '@/types/box';
 import { useTranslations } from 'next-intl';

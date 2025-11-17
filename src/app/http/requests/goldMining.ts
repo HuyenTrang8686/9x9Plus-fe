@@ -24,7 +24,11 @@ export const goldMiningRequest = {
     return await http.get<{
       _id: string;
       number: number;
-      content: string;
+      content: {
+        en: string;
+        zh: string;
+        vi: string;
+      };
     } | null>(`/mining/get-message/${number}`);
   },
   async GoldMiningRestTimes(): Promise<GoldMiningRestTimesResponse | null> {

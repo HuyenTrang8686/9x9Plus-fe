@@ -48,18 +48,18 @@ const apiRequest = async <T>(
     // Nếu truyền baseUrl thì lấy giá trị truyền vào, truyền vào '' thì đồng nghĩa với việc chúng ta gọi API đến Next.js Server
 
     const baseUrl
-    = options?.nextServer === undefined
-      ? baseURLBe
-      : options.nextServer;
+      = options?.nextServer === undefined
+        ? baseURLBe
+        : options.nextServer;
 
     const baseHeaders: {
       [key: string]: string;
     }
-    = body instanceof FormData
-      ? {}
-      : {
-          'Content-Type': 'application/json'
-        };
+      = body instanceof FormData
+        ? {}
+        : {
+            'Content-Type': 'application/json'
+          };
     const accessToken = await getCookie('accessToken9x9');
     if (accessToken) {
       baseHeaders.Authorization = `Bearer ${accessToken}`;

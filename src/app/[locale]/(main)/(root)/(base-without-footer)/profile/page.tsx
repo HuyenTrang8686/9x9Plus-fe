@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 
 const page = async () => {
   const t = await getTranslations('profile');
-  
+
   return (
     <div className="bg-9x9 min-h-screen px-4">
       <div className="absolute left-1/2 -translate-1/2 w-full mt-6">
